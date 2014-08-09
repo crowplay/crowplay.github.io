@@ -73,6 +73,7 @@
     }
 		</style>
 		<script>
+		var alltime=0;
             var blocks=1;
             var next=0;
             var n=30;
@@ -81,10 +82,11 @@
             var loop=true;
             function gameover(){
                 document.getElementById("gameover").style.display="block";
-                document.title="我一共找到"+next+"个妹字";
+                document.title="我一共用"+alltime+"秒找到"+(next-1)+"个妹字";
             }
             function restart(){
                 document.getElementById("gameover").style.display="none";
+                alltime=0;
                 blocks=1;
                 next=0;
                 n=30;
@@ -92,8 +94,10 @@
                 time=31;
                 loop=true;
                 init();
+                
             }
             function init(){
+            	alltime+=time;
                 time=21;
                 next++;
                 n-=1;
