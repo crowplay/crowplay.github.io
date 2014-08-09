@@ -73,6 +73,7 @@
     }
 		</style>
 		<script>
+            var select=null;
 		var alltime=0;
             var blocks=1;
             var next=0;
@@ -83,6 +84,7 @@
             function gameover(){
                 document.getElementById("gameover").style.display="block";
                 document.title="我一共用"+alltime+"秒找到"+(next-1)+"个妹字";
+                select.style.background="#f00";
             }
             function restart(){
                 document.getElementById("gameover").style.display="none";
@@ -135,6 +137,7 @@
                 g-=n;
                 b-=n;
                 es[tmp].innerHTML="妹";
+                select=es[tmp];
                 es[tmp].addEventListener("touchend",init);
                 
             }

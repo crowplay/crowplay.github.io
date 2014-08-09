@@ -5,25 +5,55 @@
 body{
     background: rgba(180,120,50,0.5);
     text-align: center;
-    color: #f00;
+    color: #fff;
     font-size: 18px;
 }
 .wrap{
     width: 100%;
-    max-width: 960px;
+    max-width: 660px;
     background: rgba(10,10,10,0.5);
     margin: 0 auto;
+    text-align: left;
+    overflow: hidden;
 }
 h1{
-    
+    color: #fff;
+    background: rgba(120,10,90,0.9);
+    padding:10px 0px 10px 0px;
+    font-size: 28px;
+    text-align: center;
+    width: 100%;
+}
+h2{
+    width: 100%;
+    font-size: 20px;
+    width: 95%;
+    margin: 0 auto;
+    margin-top: 10px;
 }
 ul,ol{
+    width: 100%;
+    display: block;
+    height: auto;
+    width: 95%;
+    margin: 0 auto;
 }
 li{
     list-style: none;
+    width: 95%;
+    margin: 0 auto;
+    font-size: 18px;
+    margin-top: 10px;
 }
 a,a:link,a:visited{
     text-decoration: none;
     color: #fff;
-    font-size: 28px;
+}
+.center{
+    text-align: center;
+}
+p{
+    width: 95%;
+    margin: 0 auto;
+    margin-top: 10px;
 }
