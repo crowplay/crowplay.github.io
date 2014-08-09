@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <items>
     <item>
+        <title>疯狂点击</title>
+        <link>click.html</link>
+    </item>
+    <item>
         <title>一起来找妹</title>
         <link>mei.html</link>
     </item>

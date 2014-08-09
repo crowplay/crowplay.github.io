@@ -50,7 +50,7 @@
         height: 20px;
         line-height: 20px;
     }
-    #gameover,#gamestart{
+        #gameover,#gamestart{
         position: fixed;
         z-index: 999;
         top: 0px;
@@ -63,7 +63,7 @@
     #gamestart{
         display: block;
     }
-    .msg{
+ .msg{
         position:absolute;
         height: 10%;
         left: 10%;
@@ -73,9 +73,10 @@
         top: 5%;
         bottom: 5%;
         border-radius: 10px;
-        font-size: 18px;
+        font-size: 28px;
         font-weight: 700;
-        background: rgba(255,255,255,0.5);
+        background: rgba(255,0,0,0.5);
+        color: #fff;
     }
     #gameover button,#gamestart button{
         position:absolute;
@@ -92,6 +93,11 @@
     p{
         width: 100%;
         margin-top: 10px;
+        
+        
+    }
+    p span{
+        font-weight: 900;
     }
 		</style>
 		<script>
@@ -101,6 +107,10 @@
             function gameover(){
                 document.getElementById("gameover").style.display="block";
                 document.title="我20秒点击了"+v+"次，点击一次才用"+(v/21)+"秒！";
+                document.getElementById("clicknum").innerHTML=v;
+                document.getElementById("clicks").innerHTML=(v/21).toFixed(2);
+                document.getElementById("sclick").innerHTML=(21/v).toFixed(2);
+                
                 select.style.background="#f00";
             }
             function restart(){
@@ -192,19 +202,23 @@
 			
 		</div>
         <div style="margin:10px 0px 0px 0px;line-height:25px;">
-            <p>乌鸦出品</p>
-            <p><script language="javascript" type="text/javascript" src="http://js.users.51.la/17226927.js"></script>
-<noscript><a href="http://www.51.la/?17226927" target="_blank"><img alt="&#x6211;&#x8981;&#x5566;&#x514D;&#x8D39;&#x7EDF;&#x8BA1;" src="http://img.users.51.la/17226927.asp" style="border:none" /></a></noscript></p>
+            <p>乌鸦出品 <script language="javascript" type="text/javascript" src="http://js.users.51.la/17228045.js"></script>
+<noscript><a href="http://www.51.la/?17228045" target="_blank"><img alt="&#x6211;&#x8981;&#x5566;&#x514D;&#x8D39;&#x7EDF;&#x8BA1;" src="http://img.users.51.la/17228045.asp" style="border:none" /></a></noscript></p>
         </div>
         <div id="gameover">
-            <div class="msg">请以最快的速度点击</div>
+            <div class="msg">
+                <p>右上角分享战果吧</p>
+                <p>20秒点击<span id="clicknum"></span>次</p>
+                <p>平均<span id="clicks"></span>次/秒</p>
+                <p>平均<span id="sclick"></span>秒/次</p>
+                
+            </div>
             <button onclick="restart()">重新开始。</button>
         </div>
         <div id="gamestart">
             <div class="msg">
-                <p>右上角分享战果吧</p>
-                <p>右上角分享战果吧</p>
-                <p>右上角分享战果吧</p>
+                <p>玩法：</p>
+                <p>以最快的速度点击带颜色的圆形</p>
             </div>
             <button onclick="restart()">开始游戏！</button>
         </div>
