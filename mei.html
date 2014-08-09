@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" id="viewport" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+<meta content="telephone=no" name="format-detection"/>
+<meta content="email=no" name="format-detection"/>
+<title>找妹字 乌鸦出品</title>
+<style>
+    *{
+        margin: 0px;
+        padding: 0px;
+    }
+    body{
+        text-align: center;
+    }
+    #v{
+        width: 100%;
+        font-size: 28px;
+    }
+			#canvas{
+				width:300px;
+				height:300px;
+				margin:0 auto;
+                margin-top: 10px;
+			}
+            .color{
+                display:block;
+                float: left;
+                clear: none;
+                -moz-box-shadow:0 0 0 0.1em #fff inset;
+                -webkit-box-shadow:0 0 0 0.1em #fff inset;
+                box-shadow:0 0 0 0.1em #fff inset;
+                color: #fff;
+                border-radius: 50%;
+            }
+    #v{
+        margin:10px 0px 0px 0px;
+        width: 100%;
+        height: 20px;
+        line-height: 20px;
+    }
+    #time{
+        margin:10px 0px 0px 0px;
+        width: 100%;
+        height: 20px;
+        line-height: 20px;
+    }
+    #gameover{
+        position: fixed;
+        z-index: 999;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        background: #000;
+        opacity: 0.8;
+        display: none;
+    }
+    #gameover button{
+        position:absolute;
+        height: 10%;
+        top: 45%;
+        left: 25%;
+        width: 50%;
+        right: 25px;
+        bottom: 45%;
+        border-radius: 30px;
+        font-size: 18px;
+        font-weight: 700;
+    }
+		</style>
+		<script>
+            var blocks=1;
+            var next=0;
+            var n=30;
+            var wh=0;
+            var time=31;
+            var loop=true;
+            function gameover(){
+                document.getElementById("gameover").style.display="block";
+            }
+            function restart(){
+                document.getElementById("gameover").style.display="none";
+                blocks=1;
+                next=0;
+                n=30;
+                wh=0;
+                time=31;
+                loop=true;
+                init();
+            }
+            function init(){
+                time=21;
+                next++;
+                n-=1;
+                
+
+                if(blocks<=81){
+                    wh=300/(next+1);
+                    blocks=(next+1)*(next+1);
+                }
+                document.getElementById("v").innerHTML="第 "+next+" 关";
+                document.getElementById("canvas").innerHTML="";
+                var r=Math.floor(Math.random() * 253)+1;
+                var g=Math.floor(Math.random() * 253)+1;
+                var b=Math.floor(Math.random() * 253)+1;
+                var a=Math.floor(Math.random() * 1)+0.5;
+                for(var i=0;i<blocks;i++){
+                    
+                    var e=document.createElement("div");
+                    e.setAttribute("class","color");
+                    e.setAttribute("data-color","#f00");
+                    e.style.width=wh+"px";
+                    e.style.height=wh+"px";
+                    e.style.fontSize=wh/2+"px";
+                    e.style.lineHeight=wh+"px";
+                    
+                    e.style.background="rgba("+r+","+g+","+b+","+1+")";
+                    e.innerHTML="袜";
+                    //e.setAttribute("select","yes");
+                    
+                    document.getElementById("canvas").appendChild(e);
+                }
+                var tmp=Math.floor(Math.random() * blocks);
+                var es=document.getElementsByClassName("color");
+                r-=n;
+                g-=n;
+                b-=n;
+                es[tmp].innerHTML="妹";
+                es[tmp].addEventListener("touchend",init);
+                
+            }
+            
+			window.onload = function() {
+				init();
+				document.getElementById("canvas").addEventListener('touchstart', function (e) {
+        var touchobj = e.changedTouches[0] // reference first touch point (ie: first finger)
+        startx = parseInt(touchobj.clientX) // get x position of touch point relative to left edge of browser
+        starty = parseInt(touchobj.clientY) // get x position of touch point relative to left edge of browser
+        //statusdiv.innerHTML = 'Status: touchstart<br /> ClientX: ' + startx + 'px'
+        e.preventDefault()
+    }, false);
+
+    document.getElementById("canvas").addEventListener('touchmove', function (e) {
+        var touchobj = e.changedTouches[0] // reference first touch point for this event
+        
+        //gameCtrl.player.x+=distX;
+        //gameCtrl.player.y+=distY;
+        //statusdiv.innerHTML = 'Status: touchmove<br /> Horizontal distance traveled: ' + dist + 'px'
+        e.preventDefault()
+    }, false);
+
+    document.getElementById("canvas").addEventListener('touchend', function (e) {
+        var touchobj = e.changedTouches[0] // reference first touch point for this event
+        //statusdiv.innerHTML = 'Status: touchend<br /> Resting x coordinate: ' + touchobj.clientX + 'px'
+        var distX = parseInt(touchobj.clientX) - startx;
+        var distY = parseInt(touchobj.clientY) - starty;
+        var tmp=0;
+        if (distX > document.body.scrollWidth/3) {
+           //right
+        }
+        if (distX < -document.body.scrollWidth/3) {
+           //left
+        }
+        if (distY > document.body.scrollWidth/3) {
+            //down
+        }
+        if (distY < -document.body.scrollWidth/3) {
+           //up
+        }
+        e.preventDefault()
+    }, false);
+				//
+
+                setInterval(function(){
+                    
+                    if(loop){
+                    
+                        time--;
+                        if(time==0){
+                            loop=false;
+                            gameover();
+                        }
+                        if(time<9){
+                            document.getElementById("time").style.color="#f00";
+                        }else{
+                        document.getElementById("time").style.color="blue";    
+                        }
+                        document.getElementById("time").innerHTML="剩余时间 <b>"+time+"</b> 秒";
+                    }
+                    
+                    
+                },1000);
+			}
+		</script>
+	</head>
+	<body>
+		<div id="v"></div>
+        <div id="time"></div>
+		<div id="canvas">
+			
+		</div>
+        <div style="margin:10px 0px 0px 0px;line-height:25px;">
+            <p>乌鸦出品</p>
+        </div>
+        <div id="gameover">
+            <button onclick="restart()">重新开始</button>
+        </div>
+        
+</body>
+</html>
