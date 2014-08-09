@@ -28,6 +28,9 @@
                 margin-top: 10px;
                 background: yellow;
                 border-radius: 100%;
+                line-height: 300px;
+                color: #fff;
+                font-size: 80px;
 			}
             .color{
                 display:block;
@@ -39,12 +42,6 @@
                 color: #fff;
                 border-radius: 50%;
             }
-    #v{
-        margin:10px 0px 0px 0px;
-        width: 100%;
-        height: 20px;
-        line-height: 20px;
-    }
     #time{
         margin:10px 0px 0px 0px;
         width: 100%;
@@ -124,8 +121,7 @@
             function onclick(e){
             	
                 v++;
-                document.getElementById("v").innerHTML="点击 "+v+" 次";
-                document.getElementById("canvas").innerHTML="";
+                document.getElementById("canvas").innerHTML=v;
                 var r=Math.floor(Math.random() * 253)+1;
                 var g=Math.floor(Math.random() * 253)+1;
                 var b=Math.floor(Math.random() * 253)+1;
@@ -197,7 +193,6 @@
 		</script>
 	</head>
 	<body>
-		<div id="v"></div>
         <div id="time"></div>
 		<div id="canvas">
 			
