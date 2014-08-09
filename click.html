@@ -7,7 +7,7 @@
 <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
 <meta content="telephone=no" name="format-detection"/>
 <meta content="email=no" name="format-detection"/>
-<title>找妹字 乌鸦出品</title>
+<title>疯狂点击 乌鸦出品</title>
 <style>
     *{
         margin: 0px;
@@ -15,7 +15,6 @@
     }
     body{
         text-align: center;
-        background: rgba(100,20,50,0.3);
     }
     #v{
         width: 100%;
@@ -26,6 +25,8 @@
 				height:300px;
 				margin:0 auto;
                 margin-top: 10px;
+                background: #f00;
+                border-radius: 100%;
 			}
             .color{
                 display:block;
@@ -72,10 +73,9 @@
         top: 5%;
         bottom: 5%;
         border-radius: 10px;
-        font-size: 28px;
+        font-size: 18px;
         font-weight: 700;
-        background: rgba(255,0,0,0.5);
-        color: #fff;
+        background: rgba(255,255,255,0.5);
     }
     #gameover button,#gamestart button{
         position:absolute;
@@ -92,92 +92,44 @@
     p{
         width: 100%;
         margin-top: 10px;
-        
-        
-    }
-    p span{
-        font-weight: 900;
     }
 		</style>
 		<script>
-            var select=null;
-		var alltime=0;
-            var blocks=1;
-            var next=0;
-            var n=30;
-            var wh=0;
-            var time=31;
-            var loop=true;
+            var time=21;
+            var v=0;
+            var loop=false;
             function gameover(){
                 document.getElementById("gameover").style.display="block";
-                document.title="我一共用"+alltime+"秒找到"+(next-1)+"个妹字";
-                document.getElementById("miao").innerHTML=alltime;
-                document.getElementById("meizi").innerHTML=next-1;
+                document.title="我20秒点击了"+v+"次，点击一次才用"+(v/21)+"秒！";
                 select.style.background="#f00";
             }
             function restart(){
                 document.getElementById("gameover").style.display="none";
-                alltime=0;
-                blocks=1;
-                next=0;
-                n=30;
-                wh=0;
-                time=31;
-                loop=true;
-                init();
+                document.getElementById("gamestart").style.display="none";
                 
-            }
-            function init(){
-            	
                 time=21;
-                next++;
-                n-=1;
-                
-
-                if(blocks<=81){
-                    wh=300/(next+1);
-                    blocks=(next+1)*(next+1);
-                }
-                document.getElementById("v").innerHTML="第 "+next+" 关";
+                loop=true;
+            }
+            function onclick(e){
+            	
+                v++;
+                document.getElementById("v").innerHTML="点击 "+v+" 次";
                 document.getElementById("canvas").innerHTML="";
-                var r=Math.floor(Math.random() * 200)+1;
-                var g=Math.floor(Math.random() * 100)+1;
-                var b=Math.floor(Math.random() * 100)+1;
+                var r=Math.floor(Math.random() * 253)+1;
+                var g=Math.floor(Math.random() * 253)+1;
+                var b=Math.floor(Math.random() * 253)+1;
                 var a=Math.floor(Math.random() * 1)+0.5;
-                for(var i=0;i<blocks;i++){
-                    
-                    var e=document.createElement("div");
-                    e.setAttribute("class","color");
-                    e.setAttribute("data-color","#f00");
-                    e.style.width=wh+"px";
-                    e.style.height=wh+"px";
-                    e.style.fontSize=wh/2+"px";
-                    e.style.lineHeight=wh+"px";
-                    
-                    e.style.background="rgba("+r+","+g+","+b+","+1+")";
-                    e.innerHTML="袜";
-                    //e.setAttribute("select","yes");
-                    
-                    document.getElementById("canvas").appendChild(e);
-                }
-                var tmp=Math.floor(Math.random() * blocks);
-                var es=document.getElementsByClassName("color");
-                r-=n;
-                g-=n;
-                b-=n;
-                es[tmp].innerHTML="妹";
-                select=es[tmp];
-                es[tmp].addEventListener("touchend",init);
+                e.style.backgroundColor="rgba("+r+","+g+","+b+",1)";
                 
             }
             
 			window.onload = function() {
-				init();
 				document.getElementById("canvas").addEventListener('touchstart', function (e) {
         var touchobj = e.changedTouches[0] // reference first touch point (ie: first finger)
         startx = parseInt(touchobj.clientX) // get x position of touch point relative to left edge of browser
         starty = parseInt(touchobj.clientY) // get x position of touch point relative to left edge of browser
         //statusdiv.innerHTML = 'Status: touchstart<br /> ClientX: ' + startx + 'px'
+        onclick(this);
         e.preventDefault()
     }, false);
 
@@ -215,18 +167,17 @@
                 setInterval(function(){
                     
                     if(loop){
-                    	alltime++;
                         time--;
+                        document.getElementById("time").innerHTML="剩余时间 <b>"+time+"</b> 秒";
+                        if(time<9){
+                            document.getElementById("time").style.color="#f00";
+                        }else{
+                            document.getElementById("time").style.color="blue";    
+                        }
                         if(time==0){
                             loop=false;
                             gameover();
                         }
-                        if(time<9){
-                            document.getElementById("time").style.color="#f00";
-                        }else{
-                        document.getElementById("time").style.color="blue";    
-                        }
-                        document.getElementById("time").innerHTML="剩余时间 <b>"+time+"</b> 秒";
                     }
                     
                     
@@ -241,16 +192,21 @@
 			
 		</div>
         <div style="margin:10px 0px 0px 0px;line-height:25px;">
-            <p>乌鸦出品 <script language="javascript" type="text/javascript" src="http://js.users.51.la/17226927.js"></script>
+            <p>乌鸦出品</p>
+            <p><script language="javascript" type="text/javascript" src="http://js.users.51.la/17226927.js"></script>
 <noscript><a href="http://www.51.la/?17226927" target="_blank"><img alt="&#x6211;&#x8981;&#x5566;&#x514D;&#x8D39;&#x7EDF;&#x8BA1;" src="http://img.users.51.la/17226927.asp" style="border:none" /></a></noscript></p>
         </div>
         <div id="gameover">
+            <div class="msg">请以最快的速度点击</div>
+            <button onclick="restart()">重新开始。</button>
+        </div>
+        <div id="gamestart">
             <div class="msg">
                 <p>右上角分享战果吧</p>
-                <p>用时：<span id="miao"></span>秒</p>
-                <p>找到：<span id="meizi"></span>个妹字。</p>
+                <p>右上角分享战果吧</p>
+                <p>右上角分享战果吧</p>
             </div>
-            <button onclick="restart()">重新开始。</button>
+            <button onclick="restart()">开始游戏！</button>
         </div>
         
 </body>
