@@ -58,6 +58,32 @@
             width: 90%;
             border-radius: 30px 0px 0px 30px;
         }
+        @-webkit-keyframes alert {
+            50%{
+                opacity: 0.5;
+            }
+        }
+        @keyframes alert {
+            50%{
+                opacity: 0.5;
+            }
+        }
+        #alert{
+            position: fixed;
+            top:0px;
+            bottom: 0px;
+            left: 0px;
+            right: 0px;
+            border: solid #f00 5px;
+            background: rgba(255,0,0,0.5);
+            display: none;
+        
+        }
+        #alert.select{
+            display: block;
+            -webkit-animation: alert 0.5s infinite;
+            animation: alert 0.5s infinite;
+        }
         @keyframes run {
             50% {
                 background-position: -100px 0px;
@@ -79,6 +105,17 @@
             bottom:0px;
             /*-webkit-animation: run 1s infinite;*/
         }
+        #copyright{
+            position: fixed;
+            left: 0px;
+            right: 0px;
+            bottom: 0px;
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+            background: rgba(255,255,255,0.8);
+            font-size: 12px;
+        }
     </style>
     <script>
         function click(e){
@@ -93,6 +130,7 @@
         window.addEventListener("load",function(){
             var sheeps=document.getElementsByClassName("sheep");
             setInterval(function(){
+                document.getElementById("alert").setAttribute("class","");
                 for(var i=0;i<sheeps.length;i++) {
                     if (sheeps[i].getAttribute("data-loop") == "true") {
                         if (sheeps[i].hasAttribute("data-bleft")) {
@@ -116,6 +154,7 @@
                             console.log(right);
                             if (right > document.body.scrollWidth) {
                                 right = -100;
+                                document.getElementById("alert").setAttribute("class","select");
                             }
                             sheeps[i].setAttribute("data-right", right);
                             sheeps[i].style.right = right + "px";
@@ -141,6 +180,8 @@
     <div class="sheep" data-loop="true" data-live="100" onclick="click(this)"></div>
     <div class="sheep" data-loop="true" data-live="100" onclick="click(this)"></div>
     <div class="sheep" data-loop="true" data-live="100" onclick="click(this)"></div>
+    <div id="alert"></div>
+    <div id="copyright">乌鸦出品</div>
 </body>
 </html>
 <div style="-webkit-transform: translate3d(30px, 30px, 0px) rotate(0deg); width: 110px; height: 185px; display: none;"><img src="rain.png"></div>
