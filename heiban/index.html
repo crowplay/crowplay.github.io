@@ -310,9 +310,9 @@ return rhex(a) + rhex(b) + rhex(c) + rhex(d);
         startx = parseInt(touchobj.clientX) // get x position of touch point relative to left edge of browser
         starty = parseInt(touchobj.clientY) // get x position of touch point relative to left edge of browser
         //statusdiv.innerHTML = 'Status: touchstart<br /> ClientX: ' + startx + 'px'
-        console.log("x:"+startx+"y:"+starty);
+        //console.log("x:"+startx+"y:"+starty);
         //c.clearRect(startx,starty+80,10,10);
-        c.fillStyle = "rgba(250,0,0,1)"
+        //c.fillStyle = "rgba(250,0,0,1)"
         //c.fillRect(startx-40,starty-60,30,30);
         e.preventDefault()
     }, false);
@@ -323,11 +323,9 @@ return rhex(a) + rhex(b) + rhex(c) + rhex(d);
         //var distY = parseInt(touchobj.clientY) - starty;
                 startx = parseInt(touchobj.clientX) // get x position of touch point relative to left edge of browser
         starty = parseInt(touchobj.clientY) // get x position of touch point relative to left edge of browser
-        c.clearRect(startx-40,starty-60,30,30);
-        if(canvas.toDataURL("image/png")==o64){
-            isOK=true;
-            gameover();
-        }
+        
+        c.clearRect(startx-(document.body.scrollWidth-300)/2-10,starty-40-10,20,20);
+        
         //gameCtrl.player.x+=distX;
         //gameCtrl.player.y+=distY;
         //statusdiv.innerHTML = 'Status: touchmove<br /> Horizontal distance traveled: ' + dist + 'px'
@@ -339,7 +337,10 @@ return rhex(a) + rhex(b) + rhex(c) + rhex(d);
         //statusdiv.innerHTML = 'Status: touchend<br /> Resting x coordinate: ' + touchobj.clientX + 'px'
         var distX = parseInt(touchobj.clientX) - startx;
         var distY = parseInt(touchobj.clientY) - starty;
-
+        if(canvas.toDataURL("image/png")==o64){
+            isOK=true;
+            gameover();
+        }
         var tmp=0;
         if (distX > document.body.scrollWidth/3) {
            //right
@@ -390,7 +391,7 @@ return rhex(a) + rhex(b) + rhex(c) + rhex(d);
                 <p>右上角分享战果吧</p>
                 <p>用时：<span id="miao"></span>秒</p>
             </div>
-            <button onclick="restart()">重新开始。</button>
+            <button onclick="restart()">重新开始</button>
         </div>
         <div id="gamestart">
             <div class="msg">
