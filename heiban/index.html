@@ -326,7 +326,10 @@ return rhex(a) + rhex(b) + rhex(c) + rhex(d);
         starty = parseInt(touchobj.clientY) // get x position of touch point relative to left edge of browser
         
         c.clearRect(startx-(document.body.scrollWidth-300)/2-10,starty-40-10,20,20);
-        
+        if(canvas.toDataURL("image/png")==o64){
+            isOK=true;
+            gameover();
+        }
         //gameCtrl.player.x+=distX;
         //gameCtrl.player.y+=distY;
         //statusdiv.innerHTML = 'Status: touchmove<br /> Horizontal distance traveled: ' + dist + 'px'
