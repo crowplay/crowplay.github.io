@@ -24,11 +24,12 @@
 			#mycanvas{
 				width:300px;
 				height:225px;
-				margin:0 auto;
-                margin-top: 10px;
                 background: url(4d426a1bd1869fc864640400.jpg);
-                background-size: 100%;
+                background-size: 100% 100%;
                 overflow: hidden;
+                margin: 0 auto;
+                margin-top: 10px;
+                
 			}
             .color{
                 display:block;
@@ -100,6 +101,16 @@
     }
     p span{
         font-weight: 900;
+    }
+    #footer{
+        position: fixed;
+        bottom: 0px;
+        height: 20px;
+        line-height: 20px;
+        font-size: 12px;
+        left: 0px;
+        right: 0px;
+        background: rgba(255,255,255,0.5);
     }
 		</style>
 		<script>
@@ -287,6 +298,10 @@ return rhex(a) + rhex(b) + rhex(c) + rhex(d);
             
 			window.onload = function() {
 				canvas=document.getElementById('mycanvas');
+                canvas.width=300;
+                canvas.height=225;
+                canvas.top=0;
+                canvas.left=0;
                 c=canvas.getContext('2d');
                 //odata = c.getImageData(0,0,canvas.width,canvas.height).data;
                 
@@ -295,16 +310,20 @@ return rhex(a) + rhex(b) + rhex(c) + rhex(d);
         startx = parseInt(touchobj.clientX) // get x position of touch point relative to left edge of browser
         starty = parseInt(touchobj.clientY) // get x position of touch point relative to left edge of browser
         //statusdiv.innerHTML = 'Status: touchstart<br /> ClientX: ' + startx + 'px'
+        console.log("x:"+startx+"y:"+starty);
+        //c.clearRect(startx,starty+80,10,10);
+        c.fillStyle = "rgba(250,0,0,1)"
+        //c.fillRect(startx-40,starty-60,30,30);
         e.preventDefault()
     }, false);
 
     document.getElementById("mycanvas").addEventListener('touchmove', function (e) {
         var touchobj = e.changedTouches[0] // reference first touch point for this event
-        var distX = parseInt(touchobj.clientX) - startx;
-        var distY = parseInt(touchobj.clientY) - starty;
-        c.clearRect(touchobj.clientX,touchobj.clientY,10,10);
-        //console.log("x:"+touchobj.clientX+"y:"+touchobj.clientY);
-        
+        //var distX = parseInt(touchobj.clientX) - startx;
+        //var distY = parseInt(touchobj.clientY) - starty;
+                startx = parseInt(touchobj.clientX) // get x position of touch point relative to left edge of browser
+        starty = parseInt(touchobj.clientY) // get x position of touch point relative to left edge of browser
+        c.clearRect(startx-40,starty-60,30,30);
         if(canvas.toDataURL("image/png")==o64){
             isOK=true;
             gameover();
@@ -320,6 +339,7 @@ return rhex(a) + rhex(b) + rhex(c) + rhex(d);
         //statusdiv.innerHTML = 'Status: touchend<br /> Resting x coordinate: ' + touchobj.clientX + 'px'
         var distX = parseInt(touchobj.clientX) - startx;
         var distY = parseInt(touchobj.clientY) - starty;
+
         var tmp=0;
         if (distX > document.body.scrollWidth/3) {
            //right
@@ -360,11 +380,10 @@ return rhex(a) + rhex(b) + rhex(c) + rhex(d);
 		</script>
 	</head>
 	<body>
-		<div id="v"></div>
         <div id="time"></div>
 		<canvas id="mycanvas"></canvas>
-        <div style="margin:10px 0px 0px 0px;line-height:25px;">
-            <p>乌鸦出品 <script language="javascript" type="text/javascript" src="http://js.users.51.la/17233687.js"></script></p>
+        <div id="footer">
+            乌鸦出品 <script language="javascript" type="text/javascript" src="http://js.users.51.la/17233687.js"></script>
         </div>
         <div id="gameover">
             <div class="msg">
