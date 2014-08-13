@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <items>
     <item>
+        <title>色块英雄</title>
+        <link>crack.html</link>
+    </item>
+    <item>
+        <title>擦黑板</title>
+        <link>heiban</link>
+    </item>
+    <item>
+        <title>别让绵羊吃了你的脑子</title>
+        <link>sheep</link>
+    </item>
+    <item>
         <title>疯狂点击</title>
         <link>click.html</link>
     </item>
