@@ -271,7 +271,7 @@
             
             e.setAttribute("data-live",sheeplive);
             e.setAttribute("data-loop","true");
-            e.style.opacity=sheeplive/100;
+            
             document.getElementById("livevalue").style.width=sheeplive+"%";
             if(sheeplive<=0){
                 diesheep++;
@@ -337,6 +337,7 @@
                                 }
                                 sheeps[i].setAttribute("data-bleft", bleft);
                                 sheeps[i].style.backgroundPosition = bleft + "px 0px";
+                                sheeps[i].style.opacity=sheeplive/100;
                             } else {
                                 sheeps[i].setAttribute("data-bleft", 0);
                             }
