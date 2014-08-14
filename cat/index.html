@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" id="viewport" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+<meta content="telephone=no" name="format-detection"/>
+<meta content="email=no" name="format-detection"/>
+<title>找到那只喵 乌鸦出品</title>
+<style>
+    *{
+        margin: 0px;
+        padding: 0px;
+    }
+    body{
+        text-align: center;
+        background: rgba(25,155,155,0.5);
+    }
+    #time{
+        width: 100%;
+        height: 50px;
+        line-height: 50px;
+        font-size: 28px;
+        float: left;
+        clear: left;
+    }
+			#canvas{
+				width:280px;
+				height:280px;
+				margin:0 auto;
+                margin-top: 10px;
+                border: solid rgba(255,255,255,0.5) 10px;
+                border-radius: 20px;
+                overflow: hidden;
+                position: relative;
+			}
+    #cats{
+        width: 280px;
+        height: 280px;
+        float: left;
+        clear: left;
+        top:0px;
+        left: 0px;
+        position:absolute;
+    }
+    .line{
+        width: 100%;
+        height: auto;
+        position: absolute;
+    }
+    .cat{
+        background:url(black_cat.png);
+        background-repeat: no-repeat;
+        
+        position: absolute;
+        background-position:0px 0px;
+        background-size: 100%;
+        overflow: hidden;
+    }
+    .dog{
+        background:url(no_dogs_allowed.png);
+        background-repeat: no-repeat;
+        background-position:0px 0px;
+        background-size:100%;
+        position: absolute;
+        overflow: hidden;
+    }
+    .die{
+        display: none;
+    }
+    #about{
+        position: fixed;
+        width:auto;
+        height: 25px;
+        line-height: 25px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        background: rgba(255,255,255,0.5);
+    }
+    #welcome{
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        width: auto;
+        height: auto;
+        background: rgba(255,190,5,1);
+        z-index: 999;
+    }
+    #gameover{
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        width: auto;
+        height: auto;
+        background: rgba(255,190,5,1);
+        display: none;
+        z-index: 888;
+    }
+    #colorBlock{
+        color: #f00;
+        font-size: 50px;
+        font-weight: 800;
+    }
+    h2{
+        width: 100%;
+        margin: 0 auto;
+        margin-top: 10px;
+        color: #fff;
+        font-size: 30px;
+    }
+    button{
+        width: 80%;
+        height: auto;
+        padding: 10px 0px 10px 0px;
+        margin: 0 auto;
+        margin-top: 50px;
+        font-size: 28px; 
+        border-radius: 50px;
+        border: none;
+        outline: none;
+        background: rgba(255,255,255,1);
+    }
+    #gameover button{
+        width: 90%;
+        height: auto;
+        padding: 10px 0px 10px 0px;
+        position: fixed;
+        font-size: 28px; 
+        border-radius: 50px;
+        border: none;
+        outline: none;
+        bottom: 10px;
+        left: 5%;
+        right: 5%;
+        background: rgba(255,255,255,1);
+    }
+    p{
+       width: 100%;
+        margin: 0 auto;
+        margin-top: 10px;
+        color: #fff;
+        font-size: 18px; 
+    }
+    .blockA{
+        width: 100%;
+        height: 50%;
+        float: left;
+        clear: left;
+        -moz-box-shadow:1px 1px 1px #fff inset; 
+        -webkit-box-shadow:1px 1px 1px #fff inset; 
+        box-shadow:1px 1px 1px #fff inset; 
+        outline: none;
+    }
+    .blockB{
+        width: 50%;
+        height: 100%;
+        display:block;
+        float: left;
+        clear: none;
+        -moz-box-shadow:1px 1px 1px #fff inset; 
+        -webkit-box-shadow:1px 1px 1px #fff inset; 
+        box-shadow:1px 1px 1px #fff inset; 
+        outline: none;
+    }
+            .color{
+                display:block;
+                float: left;
+                clear: none;
+                -moz-box-shadow:1px 1px 1px #fff inset; 
+                -webkit-box-shadow:1px 1px 1px #fff inset; 
+                box-shadow:1px 1px 1px #fff inset; 
+            }
+		</style>
+		<script>
+            once=1000/64;
+            var loop=false;
+            var blocks=1;
+            var time=0;
+            var topat=0;
+            var findcat=0;
+            function play(){
+                speet=5;
+                topat=0;
+                time=0;
+                loop=true;
+                findcat=0;
+                len=3;
+                document.getElementById("welcome").style.display="none";
+                document.getElementById("gameover").style.display="none";
+                document.getElementById("cats").innerHTML="";
+                document.getElementById("canvas").addEventListener("touchstart",check,false);
+                next();
+            }
+            function gameover(){
+                loop=false;
+                document.title="我坚持了"+time+"秒，阻止了"+findcat+"只喵星人的入侵！！！";
+                document.getElementById("findcat").innerHTML=findcat;
+                document.getElementById("alltime").innerHTML=time;
+                
+                document.getElementById("gameover").style.display="block";
+            }
+            function check(e){
+                if(e.target.getAttribute("class")=="cat"){
+                    
+                    //e.target.style.display="none";
+                    e.target.parentElement.setAttribute("data-hascat","no");
+                    e.target.parentElement.removeChild(e.target);
+                    
+                    
+                    //e.target.setAttribute("class","die");
+                    findcat++;
+                }
+            }
+            
+            function next(){
+                //alert(e.target);
+                //e.target.removeEventListener("touchstart",next);
+                
+                var line=document.createElement("div");
+                
+                line.style.left="0px";
+                line.setAttribute("class","line");
+                
+                wh=parseInt(280/len);
+                line.style.height=wh+"px";
+                line.style.top=-1*wh+"px";
+                var cat_index=Math.floor(Math.random() * len);
+                for(var i=0;i<len;i++){
+                    
+                    
+                    var div=document.createElement("div");
+                //
+                    var r=Math.floor(Math.random() * 253)+1;
+                    var g=Math.floor(Math.random() * 253)+1;
+                    var b=Math.floor(Math.random() * 253)+1;
+                    var a=Math.floor(Math.random() * 1)+0.5;
+
+                    //div.style.background="rgba("+r+","+g+","+b+","+1+")";
+                    div.setAttribute("class","dog");
+                    if(i==cat_index){
+                        div.setAttribute("class","cat");
+                    }
+                    div.style.top="0px";
+                    div.style.left=i*wh+"px";
+                    div.style.width=wh+"px";
+                    div.style.height=wh+"px";
+                    line.appendChild(div);
+                }
+                document.getElementById("cats").appendChild(line);
+                //blocks++;
+            }
+            function init(){
+                document.getElementById("welcome").style.display="block";
+                document.getElementById("gameover").style.display="none";
+                //document.getElementById("canvas").addEventListener("touchstart",check,false);
+            }
+            setInterval(function(){
+                if(loop){
+                    time++;
+                    document.getElementById("time").innerHTML=time;
+                    if(time==0){
+                        gameover();
+                    }
+                    
+                }
+            },1000);
+            setInterval(function(){
+                
+                if(loop){
+                    topat+=speet;
+                    if(topat>=wh){
+                            next();
+                        topat=0;
+                    }
+                    var anis=document.getElementById("cats").getElementsByClassName("line");
+                    for(var i=0;i<anis.length;i++){
+                        var top=parseInt(anis[i].style.top);
+                        top+=speet;
+                        anis[i].style.top=top+"px";
+                        
+                        if(top>280+wh){
+                            if(anis[i].getAttribute("data-hascat")!="no"){
+                                gameover();
+                            }
+                            //anis[i].innerHTML="";
+                            document.getElementById("cats").removeChild(anis[i]);
+                        }
+                        
+                    }
+                    //document.getElementById("cats").style.top=topat+"px";
+                    
+                }
+            },once);
+            
+        window.addEventListener("load",init,false);
+		</script>
+	</head>
+<body>
+    <div id="welcome">
+        <h2>不要让喵星人通过！</h2>
+        <p>喵，看见喵就点！</p>
+        <p>如果喵星人通过了，就输了。</p>
+        <p>看你坚持几秒钟！</p>
+        <button ontouchstart="play()">开始游戏</button>
+    </div>
+    <div id="gameover">
+        <h2>恭喜你</h2>
+        <p>你坚持了<span id="alltime"></span>秒</p>
+        <p>你阻止了<span id="findcat">0</span>只喵！</p>
+        <p>猛击右上角分享给好友吧！</p>
+        <button ontouchstart="play()">再玩一局</button>
+    </div>
+    <div id="time">60</div>
+    <div id="canvas">
+        <div id="cats"></div>
+    </div>
+    <div id="about">乌鸦作品<span style="display:none;"><script language="javascript" type="text/javascript" src="http://js.users.51.la/17237943.js"></script></span></div>
+    
+    
+</body>
+</html>
