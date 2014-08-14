@@ -64,6 +64,7 @@
             background: rgba(255,255,255,0.5);
             height: 65px;
             border-radius: 0px 0px 10px 10px;
+            display: none;
         }
         #head{
             background-image: url(1231140578078.jpg);
@@ -145,6 +146,30 @@
             z-index: 999;
             cursor: pointer;
             /*-webkit-animation: run 1s infinite;*/
+            outline: none;
+            
+        }
+        .sheep:before{
+            content: attr(data-live);
+            color: #f00;
+            font-size: 30px;
+            width:auto;
+            margin: -30px 0px 0px 40px;
+            float: left;
+            clear: left;
+
+            height: 10px;
+            
+        }
+        .sheep:after{
+            content: "%";
+            color: #f00;
+            font-size: 30px;
+            width:auto;
+            margin: -30px 0px 0px 90px;
+            float: left;
+            clear: left;
+            height: 10px;    
         }
         #copyright{
             position: fixed;
@@ -190,22 +215,35 @@
             padding: 10px 0px 10px 0px;
             font-size: 18px;
             margin-top: 20px;
-            border-radius: 30%;
+            border-radius:50px;
         }
         .die{
             display: none;
         }
-        #s{
-            width: 100px;
-            height: 100px;
-            border-radius: 100%;
-            line-height: 100px;
-            text-align: center;
-            color: rgba(255,0,0,0.8);
-            font-size: 50px;
+        #timepan{
             position: fixed;
             top: 50%;
-            left: 30%;
+            left: 50%;
+            bottom: 0;
+            right: 0;
+            width: 50%;
+            height: 50%;
+
+        }
+        #s{
+            width: 150px;
+            height: 150px;
+            line-height: 150px;
+            border-radius: 100%;
+            text-align: center;
+            color: rgba(255,0,0,1);
+            font-size: 50px;
+            position: fixed;
+            font-weight: 900;
+            top: -75px;
+            left: -75px;
+            background: rgba(255,255,255,0.1);
+            position: absolute;
             
         }
     </style>
@@ -232,8 +270,9 @@
             
             e.setAttribute("data-live",sheeplive);
             e.setAttribute("data-loop","true");
+            e.style.opacity=sheeplive/100;
             document.getElementById("livevalue").style.width=sheeplive+"%";
-            if(sheeplive<0){
+            if(sheeplive<=0){
                 diesheep++;
                 e.setAttribute("data-loop","false");
                 e.setAttribute("class","die");
@@ -360,7 +399,11 @@
         <button ontouchstart="restart()">再玩一次</button>
     </div>
     <div id="alert"></div>
-    <div id="s">0</div>
+    <div id="timepan">
+        <div id="timebox">
+            <div id="s">0</div>
+        </div>
+    </div>
     <div id="copyright">乌鸦出品<span style="display:none;"><script language="javascript" type="text/javascript" src="http://js.users.51.la/17230999.js"></script></span></div>
 </body>
 </html>
