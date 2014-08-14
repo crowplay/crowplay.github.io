@@ -50,7 +50,7 @@
         position: absolute;
     }
     .cat{
-        background:url(black_cat.png);
+        background:url(cat.png);
         background-repeat: no-repeat;
         
         position: absolute;
@@ -59,7 +59,7 @@
         overflow: hidden;
     }
     .dog{
-        background:url(no_dogs_allowed.png);
+        background:url(pig.png);
         background-repeat: no-repeat;
         background-position:0px 0px;
         background-size:100%;
@@ -178,14 +178,14 @@
             }
 		</style>
 		<script>
-            once=1000/64;
+            once=1000/32;
             var loop=false;
             var blocks=1;
             var time=0;
             var topat=0;
             var findcat=0;
             function play(){
-                speet=5;
+                speet=1;
                 topat=0;
                 time=0;
                 loop=true;
