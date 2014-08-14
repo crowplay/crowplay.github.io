@@ -147,6 +147,7 @@
             cursor: pointer;
             /*-webkit-animation: run 1s infinite;*/
             outline: none;
+            outline-style: none;
             
         }
         .sheep:before{
@@ -302,7 +303,8 @@
                     times2+=1000/24;
                     if(times>1000){
                         alltime++;
-                        document.getElementById("s").innerHTML=alltime;
+                        //document.getElementById("s").innerHTML=alltime;
+                        document.getElementById("s").innerHTML=diesheep;
                         times=0;
                     }
                     if(times2>1200){
@@ -369,7 +371,7 @@
                         }
                     }
                 }
-            },1000/24);
+            },1000/32);
         },false)
     </script>
 </head>
