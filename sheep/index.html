@@ -337,6 +337,8 @@
                                 }
                                 sheeps[i].setAttribute("data-bleft", bleft);
                                 sheeps[i].style.backgroundPosition = bleft + "px 0px";
+                                var sheeplive=sheeps[i].getAttribute("data-live");
+                                sheeplive=parseInt(sheeplive);
                                 sheeps[i].style.opacity=sheeplive/100;
                             } else {
                                 sheeps[i].setAttribute("data-bleft", 0);
