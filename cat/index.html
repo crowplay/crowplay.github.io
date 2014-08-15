@@ -229,8 +229,8 @@
                 line.setAttribute("class","line");
                 
                 wh=parseInt(280/len);
-                line.style.height=wh+"px";
-                line.style.top=-1*wh+"px";
+                //line.style.height=wh+"px";
+                //line.style.top=-1*wh+"px";
                 var cat_index=Math.floor(Math.random() * len);
                 var cat_index2=Math.floor(Math.random() * len);
                 for(var i=0;i<len;i++){
@@ -248,13 +248,14 @@
                     if(i==cat_index ||i==cat_index2){
                         div.setAttribute("class","cat");
                     }
-                    div.style.top="0px";
+                    div.style.top=-1*wh+"px";
                     div.style.left=i*wh+"px";
                     div.style.width=wh+"px";
                     div.style.height=wh+"px";
-                    line.appendChild(div);
+                    //line.appendChild(div);
+                    document.getElementById("cats").appendChild(div);
                 }
-                document.getElementById("cats").appendChild(line);
+                //document.getElementById("cats").appendChild(line);
                 //blocks++;
             }
             function init(){
@@ -279,7 +280,7 @@
                             next();
                         topat=0;
                     }
-                    var anis=document.getElementById("cats").getElementsByClassName("line");
+                    var anis=document.getElementById("cats").getElementsByTagName("div");
                     for(var i=0;i<anis.length;i++){
                         var top=parseInt(anis[i].style.top);
                         top+=speet;
