@@ -178,7 +178,7 @@
             }
 		</style>
 		<script>
-            once=1000/512;
+            once=1000/128;
             var loop=false;
             var blocks=1;
             var time=0;
@@ -284,7 +284,7 @@
                         top+=speet;
                         anis[i].style.top=top+"px";
                         
-                        if(top>280+wh){
+                        if(top>280){
                             if(anis[i].getAttribute("data-hascat")!="no"){
                                 gameover();
                             }
