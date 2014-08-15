@@ -150,6 +150,24 @@
             outline-style: none;
             
         }
+        .sheep span{
+          width:120px;
+          float:left;
+          clear:left;
+          height:8px;
+          border:solid #f00 1px;
+          margin:-20px 0px 0px 0px;
+        }
+        .sheep a{
+          width:100%;
+          float:left;
+          clear:left;
+          height:8px;
+          background:#f00;
+          margin:0px 0px 0px 0px;
+          display:block;
+        }
+        /*
         .sheep:before{
             content: attr(data-live);
             color: #f00;
@@ -172,6 +190,7 @@
             clear: left;
             height: 10px;    
         }
+        */
         #copyright{
             position: fixed;
             left: 0px;
@@ -267,7 +286,7 @@
         function attack(e){
             var sheeplive=e.getAttribute("data-live");
             sheeplive=parseInt(sheeplive);
-            sheeplive-=25;
+            sheeplive-=20;
             
             e.setAttribute("data-live",sheeplive);
             e.setAttribute("data-loop","true");
@@ -312,6 +331,8 @@
                        
                         //add a new sheep
                         var s=document.createElement("div");
+                        var span=document.createElement("span");
+                        var a=document.createElement("a");
                         s.setAttribute("class","sheep");
                         s.setAttribute("data-live",100);
                         s.setAttribute("data-loop","true");
@@ -319,7 +340,8 @@
                         s.ontouchstart=function(){
                             attack(this);
                         }
-                        
+                        span.appendChild(a);
+                        s.appendChild(span);
                         document.getElementById("sheepHome").appendChild(s);
                         times2=0;
                     }
@@ -370,7 +392,8 @@
                                 sheeps[i].style.left = left + "px";
                                 var sheeplive=sheeps[i].getAttribute("data-live");
                                 sheeplive=parseInt(sheeplive);
-                                sheeps[i].style.opacity=sheeplive/100;
+                                //sheeps[i].style.opacity=sheeplive/100;
+                                sheeps[i].getElementsByTagName("a")[0].style.width=sheeplive+"%";
                             } else {
                                 sheeps[i].setAttribute("data-left",document.body.scrollWidth);
                             }
@@ -395,7 +418,7 @@
     <div id="sheepHome">
         
     </div>
-    <div class="sheep" data-loop="true" data-live="100" ontouchstart="attack(this)"></div>
+    <div class="sheep" data-loop="true" data-live="100" ontouchstart="attack(this)"><span><a></a></span></div>
     <div id="gamestart">
         <p>绵羊准备进攻你的会所！</p>
         <p>你要用手点击绵羊以便阻止它们前进！</p>
