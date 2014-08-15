@@ -210,7 +210,7 @@
                 if(e.target.getAttribute("class")=="cat"){
                     
                     //e.target.style.display="none";
-                    e.target.setAttribute("data-hascat","no");
+                    //e.target.setAttribute("data-hascat","no");
                     e.target.parentElement.removeChild(e.target);
                     
                     
@@ -287,7 +287,7 @@
                         anis[i].style.top=top+"px";
                         
                         if(top>280){
-                            if(anis[i].getAttribute("data-hascat")!="no"){
+                            if(anis[i].getAttribute("class")=="class"){
                                 gameover();
                             }
                             //anis[i].innerHTML="";
