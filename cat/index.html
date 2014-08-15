@@ -196,6 +196,7 @@
                 document.getElementById("cats").innerHTML="";
                 document.getElementById("canvas").addEventListener("touchstart",check,false);
                 next();
+                gameloop();
             }
             function gameover(){
                 loop=false;
@@ -270,9 +271,8 @@
                     
                 }
             },1000);
-            setInterval(function(){
-                
-                if(loop){
+            function gameloop(){
+            	if(loop){
                     topat+=speet;
                     if(topat>=wh){
                             next();
@@ -296,7 +296,8 @@
                     //document.getElementById("cats").style.top=topat+"px";
                     
                 }
-            },once);
+            	setTimeout(gameloop,once);
+            }
             
         window.addEventListener("load",init,false);
 		</script>
