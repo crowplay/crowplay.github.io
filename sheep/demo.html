@@ -174,7 +174,9 @@
           height:8px;
           background:#f00;
           margin:1px 0px 0px 0px;
+          display:block;
         }
+        /*
         .sheep:before{
             content: attr(data-live);
             color: #f00;
@@ -197,6 +199,7 @@
             clear: left;
             height: 10px;    
         }
+        */
         #copyright{
             position: fixed;
             left: 0px;
@@ -424,7 +427,7 @@
     <div id="sheepHome">
         
     </div>
-    <div class="sheep" data-loop="true" data-live="100" ontouchstart="attack(this)"><span></span></div>
+    <div class="sheep" data-loop="true" data-live="100" ontouchstart="attack(this)"><span><a></a></span></div>
     <div id="gamestart">
         <p>绵羊准备进攻你的会所！</p>
         <p>你要用手点击绵羊以便阻止它们前进！</p>
