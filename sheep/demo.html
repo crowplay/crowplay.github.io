@@ -338,6 +338,7 @@
                         //add a new sheep
                         var s=document.createElement("div");
                         var span=document.createElement("span");
+                        var a=document.createElement("a");
                         s.setAttribute("class","sheep");
                         s.setAttribute("data-live",100);
                         s.setAttribute("data-loop","true");
@@ -345,6 +346,7 @@
                         s.ontouchstart=function(){
                             attack(this);
                         }
+                        span.appendChild(a);
                         s.appendChild(span);
                         document.getElementById("sheepHome").appendChild(s);
                         times2=0;
