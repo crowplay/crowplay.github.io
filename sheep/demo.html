@@ -156,6 +156,7 @@
           clear:left;
           height:3px;
           background:#f00;
+          margin:-10px 0px 0px 0px;
         }
         .sheep:before{
             content: attr(data-live);
@@ -379,6 +380,7 @@
                                 var sheeplive=sheeps[i].getAttribute("data-live");
                                 sheeplive=parseInt(sheeplive);
                                 sheeps[i].style.opacity=sheeplive/100;
+                                sheeps[i].getElementsByTagName("span")[0].style.width=sheeplive+"%";
                             } else {
                                 sheeps[i].setAttribute("data-left",document.body.scrollWidth);
                             }
