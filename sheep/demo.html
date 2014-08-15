@@ -151,12 +151,29 @@
             
         }
         .sheep span{
+          width:162px;
+          float:left;
+          clear:left;
+          height:10px;
+          background:#f00;
+          margin:-10px 0px 0px 0px;
+        }
+        .sheep span:after{
+          width:160px;
+          float:left;
+          clear:left;
+          height:8px;
+          background:none;
+          margin:1px 1px 0px 0px;
+        }
+        
+        .sheep a{
           width:100%;
           float:left;
           clear:left;
-          height:3px;
+          height:8px;
           background:#f00;
-          margin:-10px 0px 0px 0px;
+          margin:1px 0px 0px 0px;
         }
         .sheep:before{
             content: attr(data-live);
@@ -380,7 +397,7 @@
                                 var sheeplive=sheeps[i].getAttribute("data-live");
                                 sheeplive=parseInt(sheeplive);
                                 sheeps[i].style.opacity=sheeplive/100;
-                                sheeps[i].getElementsByTagName("span")[0].style.width=sheeplive+"%";
+                                sheeps[i].getElementsByTagName("a")[0].style.width=sheeplive+"%";
                             } else {
                                 sheeps[i].setAttribute("data-left",document.body.scrollWidth);
                             }
