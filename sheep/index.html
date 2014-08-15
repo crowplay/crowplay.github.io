@@ -361,8 +361,9 @@
                                     }
                                 }
                                 if (left <-200 ) {
-                                    left = document.body.scrollWidth+20;
-                                    sheeps[i].setAttribute("data-live",100);
+                                    //left = document.body.scrollWidth+20;
+                                    //sheeps[i].setAttribute("data-live",100);
+                                    sheeps[i].parentElement.removeChild(sheeps[i]);
 
                                 }
                                 sheeps[i].setAttribute("data-left", left);
