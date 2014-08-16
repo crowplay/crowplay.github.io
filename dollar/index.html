@@ -191,6 +191,8 @@
                     
                     //div.style.left=left+"px";
                     div.setAttribute("class","o");
+                
+                    div.setAttribute("data-v",v);
                     div.addEventListener('touchstart',click, false);
                     document.getElementById("d").appendChild(div);
             }
@@ -206,7 +208,15 @@
                         time--;
                         document.getElementById("time").innerHTML="剩余时间 <b>"+time+"</b> 秒";
                         
-                        
+                        var divs=document.getElementById("d").getElementsByTagName("div");
+                        for(var i=0;i<divs.length;i++){
+                            if(divs[i].hasAttribute("data-v")){
+                                var tmp_v=parseInt(divs[i].getAttribute("data-v"));
+                                if(tmp_v<v){
+                                    divs[i].parentElement.removeChild(divs[i]);
+                                }
+                            }
+                        }
                         
                         if(time<9){
                             document.getElementById("time").style.color="#f00";
