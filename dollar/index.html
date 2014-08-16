@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" id="viewport" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+<meta content="telephone=no" name="format-detection"/>
+<meta content="email=no" name="format-detection"/>
+<title>疯狂数钱 乌鸦出品</title>
+<style>
+    *{
+        margin: 0px;
+        padding: 0px;
+    }
+    body{
+        text-align: center;
+        background: rgba(30,30,130,0.5);
+    }
+    #v{
+        width: 100%;
+        font-size: 28px;
+    }
+			#canvas{
+				width:300px;
+				height:300px;
+				margin:0 auto;
+                margin-top: 10px;
+                line-height: 300px;
+                color: #fff;
+                font-size: 80px;
+			}
+            .color{
+                display:block;
+                float: left;
+                clear: none;
+                -moz-box-shadow:0 0 0 0.1em #fff inset;
+                -webkit-box-shadow:0 0 0 0.1em #fff inset;
+                box-shadow:0 0 0 0.1em #fff inset;
+                color: #fff;
+                border-radius: 50%;
+            }
+    #time{
+        margin:10px 0px 0px 0px;
+        width: 100%;
+        height: 20px;
+        line-height: 20px;
+    }
+        #gameover,#gamestart{
+        position: fixed;
+        z-index: 999;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        background: rgba(0,0,0,0.8);
+        display: none;
+    }
+    #gamestart{
+        display: block;
+    }
+ .msg{
+        position:absolute;
+        height: 10%;
+        left: 10%;
+        right: 10%;
+        width: 80%;
+        height: auto;
+        top: 5%;
+        bottom: 5%;
+        border-radius: 10px;
+        font-size: 28px;
+        font-weight: 700;
+        background: rgba(255,0,0,0.5);
+        color: #fff;
+    }
+    #gameover button,#gamestart button{
+        position:absolute;
+        height: 10%;
+        left: 25%;
+        width: 50%;
+        right: 25%;
+        bottom: 10%;
+        border-radius: 30px;
+        font-size: 18px;
+        font-weight: 700;
+        background: #fff;
+    }
+    p{
+        width: 100%;
+        margin-top: 10px;
+        
+        
+    }
+    p span{
+        font-weight: 900;
+    }
+    @-webkit-keyframes goa {
+        0%{
+            left:5%;
+        }
+        100%{
+            left: -100%;
+            -webkit-transform: rotate(-180deg);
+        }
+    }
+    @-webkit-keyframes gob {
+        0%{
+            left:5%;
+        }
+        100%{
+            left: 100%;
+            -webkit-transform: rotate(-180deg);
+        }
+    }
+    div.o{
+        position: fixed;
+        width:280px;
+        height:120px;
+        left:5%;
+        top:150px;
+        background: url(Usdollar100front.jpg);
+        background-size: 100% 100%;
+    }
+    div.a{
+        position: fixed;
+        width:280px;
+        height:120px;
+        left: -300px;
+        right: 10%;
+        top:150px;
+        background: url(Usdollar100front.jpg);
+        background-size: 100% 100%;
+        -webkit-animation: goa 2s;
+    }
+    div.b{
+        position: fixed;
+        width:280px;
+        height:120px;
+        left: 1000px;
+        right: 10%;
+        top:150px;
+        background: url(Usdollar100front.jpg);
+        background-size: 100% 100%;
+        -webkit-animation: gob 2s;
+    }
+		</style>
+		<script>
+            var time=21;
+            var v=0;
+            var loop=false;
+            function gameover(){
+                document.getElementById("gameover").style.display="block";
+                document.title="我20秒点击了开关"+v+"次，点击一次开关才用"+(21/v).toFixed(2)+"秒！";
+                document.getElementById("clicknum").innerHTML=v;
+                document.getElementById("clicks").innerHTML=(v/21).toFixed(2);
+                document.getElementById("sclick").innerHTML=(21/v).toFixed(2);
+            }
+            function restart(){
+                document.getElementById("gameover").style.display="none";
+                document.getElementById("gamestart").style.display="none";
+                v=0;
+                time=21;
+                loop=true;
+                var left=parseInt((document.body.scrollWidth-280)/2);
+                document.getElementById("v").innerHTML=v;
+                for(var i=0;i<1000;i++){
+                    var div=document.createElement("div");
+                    
+                    //div.style.left=left+"px";
+                    div.setAttribute("class","o");
+                    div.addEventListener('touchstart',click, false);
+                    document.getElementById("d").appendChild(div);
+                }
+            }
+            function click(e){
+
+                    v++;
+                    document.getElementById("v").innerHTML=v;
+                    e.target.setAttribute("class","a");
+                    
+                    if(v%2==0){
+                      e.target.setAttribute("class","a");
+                    }else{
+                      e.target.setAttribute("class","b");
+                    }
+                    e.target.removeEventListener('touchstart',click);
+            }
+            
+			window.onload = function() {
+				
+
+				//
+
+                setInterval(function(){
+                    
+                    if(loop){
+                        time--;
+                        document.getElementById("time").innerHTML="剩余时间 <b>"+time+"</b> 秒";
+                        
+                        
+                        
+                        if(time<9){
+                            document.getElementById("time").style.color="#f00";
+                        }else{
+                            document.getElementById("time").style.color="blue";    
+                        }
+                        if(time==0){
+                            loop=false;
+                            gameover();
+                        }
+                        
+                    }
+                    
+                    
+                },1000);
+			}
+		</script>
+	</head>
+	<body>
+        <div id="time"></div>
+        <div id="v"></div>
+		<div id="canvas">
+			
+		</div>
+        <div style="margin:10px 0px 0px 0px;line-height:25px;">
+            <p>乌鸦出品 <span style="display:none;"><script language="javascript" type="text/javascript" src="http://js.users.51.la/17239679.js"></script></span>
+</p>
+        </div>
+        <div id="gameover">
+            <div class="msg">
+                <p>右上角分享战果吧</p>
+                <p>20秒数<span id="clicknum"></span>张美元</p>
+                <p>平均<span id="clicks"></span>张/秒</p>
+                <p>平均<span id="sclick"></span>秒/张</p>
+                
+            </div>
+            <button ontouchstart="restart()">重新开始。</button>
+        </div>
+        <div id="gamestart">
+            <div class="msg">
+                <p>玩法：</p>
+                <p>以最快的速度点击美元！</p>
+            </div>
+            <button ontouchstart="restart()">开始游戏！</button>
+        </div>
+        <div id="d"></div>
+        <img id="dollar" style="display:none;" src="Usdollar100front.jpg">
+</body>
+</html>
