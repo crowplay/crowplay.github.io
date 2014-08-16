@@ -185,6 +185,12 @@
                       e.target.setAttribute("class","b");
                     }
                     e.target.removeEventListener('touchstart',click);
+                var div=document.createElement("div");
+                    
+                    //div.style.left=left+"px";
+                    div.setAttribute("class","o");
+                    div.addEventListener('touchstart',click, false);
+                    document.getElementById("d").appendChild(div);
             }
             
 			window.onload = function() {
