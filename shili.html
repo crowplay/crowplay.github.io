@@ -159,13 +159,15 @@
     }
 		</style>
 		<script>
+            loop=false;
             function gameover(){
                 var s=[0.0,0.1,0.12,0.15,0.2,0.25,0.3,0.4,0.5,0.6,0.8,1.0,1.2,1.5,2.0];
                 s=s[live-1];
                 document.getElementById("gameover").style.display="block";
                 document.title="我的视力是"+s.toFixed(2);
-                document.getElementById("onlys").innerHTML=s;
+                document.getElementById("onlys").innerHTML=s.toFixed(2);
                 //document.getElementById("clicks").innerHTML=(v/21).toFixed(2);
+                loop=false;
             }
             function make(){
                 document.getElementById("v").innerHTML="";
@@ -245,6 +247,7 @@
                 make();
             }
             function restart(){
+                loop=true;
                 document.getElementById("gameover").style.display="none";
                 document.getElementById("gamestart").style.display="none";
                 
@@ -254,6 +257,10 @@
                 next();
                 //
                 //
+                //
+            }
+            //
+            
                 window.addEventListener('touchstart', function (e) {
         var touchobj = e.changedTouches[0] // reference first touch point (ie: first finger)
         startx = parseInt(touchobj.clientX) // get x position of touch point relative to left edge of browser
@@ -284,6 +291,7 @@
         var distX = parseInt(touchobj.clientX) - startx;
         var distY = parseInt(touchobj.clientY) - starty;
         var tmp=0;
+        if(loop){
         if (distX > document.body.scrollWidth/4) {
            //right
             console.log("right");
@@ -338,10 +346,10 @@
                 console.log("err");
             }
         }
+        }
         e.preventDefault();
     }, false);
-                //
-            }
+            //
 		</script>
 	</head>
 	<body>
@@ -349,7 +357,7 @@
             <div id="v"></div>
         </div>
         <div id="footer">
-            <p>乌鸦出品 <span style="display:none;"><script language="javascript" type="text/javascript" src="http://js.users.51.la/17241594.js"></script></span>
+            <p>乌鸦出品 <span style="display:none;"><script language="javascript" type="text/javascript" src="http://js.users.51.la/17242536.js"></script></span>
 </p>
         </div>
         <div id="gameover">
