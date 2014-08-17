@@ -292,7 +292,7 @@
         var distY = parseInt(touchobj.clientY) - starty;
         var tmp=0;
         if(loop){
-        if (distX > document.body.scrollWidth/4) {
+        if (distX > document.body.scrollWidth/3) {
            //right
             console.log("right");
             
@@ -306,7 +306,7 @@
                 
             }
         }else
-        if (distX < -document.body.scrollWidth/4) {
+        if (distX < -document.body.scrollWidth/3) {
            //left
             console.log("left");
             if(fx==180){
@@ -319,7 +319,7 @@
                 
             }
         }else
-        if (distY > document.body.scrollWidth/4) {
+        if (distY > document.body.scrollWidth/3) {
             //down
             console.log("down");
             console.log(live);
@@ -334,7 +334,7 @@
             }
             
         }else
-        if (distY < -document.body.scrollWidth/4) {
+        if (distY < -document.body.scrollWidth/3) {
            //up
             console.log("up");
             console.log(live);
