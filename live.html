@@ -168,6 +168,7 @@
                     }else{
                         e.target.setAttribute("class","o");
                     }
+                alert(e.target.getAttribute("data-at"));
                     //e.target.setAttribute("class","a");
                     //e.target.removeEventListener('touchstart',click);
                     /*
@@ -190,17 +191,7 @@
                         time--;
                         document.getElementById("time").innerHTML="剩余时间 <b>"+time+"</b> 秒";
                         
-                        var divs=document.getElementById("d").getElementsByTagName("div");
-                        for(var i=0;i<divs.length;i++){
-                            divs[i].setAttribute("class","o");
-                            /*
-                            if(divs[i].hasAttribute("data-v")){
-                                var tmp_v=parseInt(divs[i].getAttribute("data-v"));
-                                if(tmp_v<v){
-                                    divs[i].parentElement.removeChild(divs[i]);
-                                }
-                            }*/
-                        }
+                        
                         
                         if(time<9){
                             document.getElementById("time").style.color="#f00";
