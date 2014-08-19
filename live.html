@@ -167,12 +167,26 @@
                     var x=parseInt(e.target.getAttribute("data-at").split(":")[0]);
                     var y=parseInt(e.target.getAttribute("data-at").split(":")[1]);
                     
+                
+                    var vs=document.getElementById("d").getElementsByTagName("div");
                     if(e.target.getAttribute("class")=="o"){
                         e.target.setAttribute("class","select");
+                        
+                        if(x==0&&y==0){
+                            for(var i=0;i<vs.length;i++){
+                                if(vs[i].getAttribute("data-at")==x+"-"+y+1){
+                                    vs[i].setAttribute("class","select");
+                                }
+                                if(vs[i].getAttribute("data-at")==x+1+"-"+y+1){
+                                    vs[i].setAttribute("class","select");
+                                }
+                            }
+                        }
+                        
                     }else{
                         e.target.setAttribute("class","o");
                     }
-                alert(x+"-"+y);
+                    alert(x+"-"+y);
                     //e.target.setAttribute("class","a");
                     //e.target.removeEventListener('touchstart',click);
                     /*
