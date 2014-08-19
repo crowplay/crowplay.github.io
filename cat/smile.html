@@ -130,12 +130,13 @@
         background-size: 100%;
     }
     #d div.o{
-
+        background: url(cat_nosmile.png);
+        background-size: 100%;
     }
     #d div.a{
         background: url(cat_smile.png);
         background-size: 100%;
-        -webkit-animation: goa 0.5s;
+        -webkit-animation: goa 1.5s;
     }
 		</style>
 		<script>
@@ -170,12 +171,13 @@
                     document.getElementById("v").innerHTML=v;
                     e.target.setAttribute("class","a");
                     e.target.removeEventListener('touchstart',click);
-                
+                    /*
                     var div=document.createElement("div");
                     div.setAttribute("class","o");
                     div.setAttribute("data-v",v);
                     div.addEventListener('touchstart',click, false);
                     document.getElementById("d").appendChild(div);
+                    */
             }
             
 			window.onload = function() {
@@ -191,12 +193,14 @@
                         
                         var divs=document.getElementById("d").getElementsByTagName("div");
                         for(var i=0;i<divs.length;i++){
+                            divs[i].setAttribute("class","o");
+                            /*
                             if(divs[i].hasAttribute("data-v")){
                                 var tmp_v=parseInt(divs[i].getAttribute("data-v"));
                                 if(tmp_v<v){
                                     divs[i].parentElement.removeChild(divs[i]);
                                 }
-                            }
+                            }*/
                         }
                         
                         if(time<9){
