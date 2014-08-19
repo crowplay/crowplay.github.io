@@ -101,14 +101,19 @@
         height:280px;
         margin: 0 auto;
         margin-top: 50px;
+        position: relative;
+        overflow: hidden;
     }
     #d div{
         width: 280px;
         height: 280px;
         margin: 0px;
         padding: 0px;
+        position: absolute;
+        top: 0px;
+        left: 0px;
         background-size: 100% 100%;
-            -webkit-box-shadow:5px 5px 5px #000 outset;
+        z-index: 999;
     }
     @-webkit-keyframes goa {
         0%{
@@ -128,6 +133,7 @@
 
     }
     #d div.a{
+        
         -webkit-animation: goa 0.5s;
     }
 		</style>
