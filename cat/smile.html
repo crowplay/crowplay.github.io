@@ -29,6 +29,7 @@
                 line-height: 300px;
                 color: #fff;
                 font-size: 80px;
+                display: none;
 			}
             .color{
                 display:block;
@@ -95,12 +96,17 @@
     p span{
         font-weight: 900;
     }
-
-    #d div{
+    #d{
         width:280px;
         height:280px;
         margin: 0 auto;
         margin-top: 50px;
+    }
+    #d div{
+        width: 280px;
+        height: 280px;
+        margin: 0px;
+        padding: 0px;
         background-size: 100% 100%;
             -webkit-box-shadow:5px 5px 5px #000 outset;
     }
@@ -209,6 +215,7 @@
 		<div id="canvas">
 			
 		</div>
+       <div id="d"></div>
         <div style="margin:10px 0px 0px 0px;line-height:25px;">
             <p>乌鸦出品 <span style="display:none;"><script language="javascript" type="text/javascript" src="http://js.users.51.la/17241278.js"></script></span>
 </p>
@@ -227,7 +234,7 @@
             </div>
             <button ontouchstart="restart()">开始游戏！</button>
         </div>
-        <div id="d"></div>
+        
         <img id="dollar" style="display:none;" src="Usdollar100front.jpg">
 </body>
 </html>
