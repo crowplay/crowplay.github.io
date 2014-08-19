@@ -151,6 +151,8 @@
                     for(var ii=0;ii<block_len;ii++){
                         var div=document.createElement("div");
                         div.setAttribute("class","o");
+                        div.style.width=wh+"px";
+                        div.style.height=wh+"px";
                         div.addEventListener('touchstart',click, false);
                         document.getElementById("d").appendChild(div);
                     }
