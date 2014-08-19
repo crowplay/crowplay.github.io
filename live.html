@@ -163,12 +163,16 @@
 
                     v++;
                     document.getElementById("v").innerHTML=v;
+                    
+                    var x=parseInt(e.target.getAttribute("data-at").split(":")[0]);
+                    var y=parseInt(e.target.getAttribute("data-at").split(":")[1]);
+                    
                     if(e.target.getAttribute("class")=="o"){
                         e.target.setAttribute("class","select");
                     }else{
                         e.target.setAttribute("class","o");
                     }
-                alert(e.target.getAttribute("data-at"));
+                alert(x+"-"+y);
                     //e.target.setAttribute("class","a");
                     //e.target.removeEventListener('touchstart',click);
                     /*
