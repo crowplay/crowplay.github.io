@@ -145,12 +145,13 @@
                 
             }
             function next(){
-                block_len;
+                block_len++;
                 var wh=280/block_len;
                 for(var i=0;i<block_len;i++){
                     for(var ii=0;ii<block_len;ii++){
                         var div=document.createElement("div");
                         div.setAttribute("class","o");
+                        div.setAttribute("data-at",i+":"+ii);
                         div.style.width=wh+"px";
                         div.style.height=wh+"px";
                         div.addEventListener('touchstart',click, false);
@@ -162,6 +163,11 @@
 
                     v++;
                     document.getElementById("v").innerHTML=v;
+                    if(e.target.getAttribute("class")=="o"){
+                        e.target.setAttribute("class","select");
+                    }else{
+                        e.target.setAttribute("class","o");
+                    }
                     //e.target.setAttribute("class","a");
                     //e.target.removeEventListener('touchstart',click);
                     /*
