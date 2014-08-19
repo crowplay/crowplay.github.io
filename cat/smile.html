@@ -131,10 +131,8 @@
             var loop=false;
             function gameover(){
                 document.getElementById("gameover").style.display="block";
-                document.title="我20秒数了"+v+"张美元，平均数一张美元才用"+(21/v).toFixed(2)+"秒！";
+                document.title="我20秒让猫咪快乐了"+v+"次！";
                 document.getElementById("clicknum").innerHTML=v;
-                document.getElementById("clicks").innerHTML=(v/21).toFixed(2);
-                document.getElementById("sclick").innerHTML=(21/v).toFixed(2);
             }
             function restart(){
                 document.getElementById("gameover").style.display="none";
@@ -218,10 +216,7 @@
         <div id="gameover">
             <div class="msg">
                 <p>右上角分享战果吧</p>
-                <p>20秒数<span id="clicknum"></span>张美元</p>
-                <p>平均<span id="clicks"></span>张/秒</p>
-                <p>平均<span id="sclick"></span>秒/张</p>
-                
+                <p>20秒让猫咪快乐<span id="clicknum"></span>次</p>                
             </div>
             <button ontouchstart="restart()">重新开始。</button>
         </div>
