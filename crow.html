@@ -104,9 +104,16 @@
             function gameover(){
                 document.getElementById("gameover").style.display="block";
                 document.title=alltime+"秒过去了，小乌鸦还没有喝完水，小乌鸦好可怜啊~";
+                document.getElementById("msg_ok").style.display="none";
+                document.getElementById("msg_over").style.display="none";
                 if(success){
                     document.title="我用了"+alltime+"秒就让小乌鸦喝完水了，小乌鸦好开森啊~ 嘻嘻！";
+                    document.getElementById("msg_ok").style.display="block";
+                }else{
+                    document.getElementById("msg_over").style.display="block";
                 }
+                document.getElementById("alltime1").innerHTML=alltime;
+                document.getElementById("alltime2").innerHTML=alltime;
                 
             }
             function restart(){
@@ -160,8 +167,9 @@
         </div>
         <div id="gameover">
             <div class="msg">
-                <p>右上角分享战果吧</p>
-                <p><span id="clicknum"></span>次</p>                
+                <p>右上角分享朋友圈</p>
+                <p id="msg_over"><span id="alltime1"></span>秒过去了，小乌鸦还没有喝完水，小乌鸦好可怜啊~</p>   
+                <p id="msg_ok">我用了<span id="alltime2"></span>秒就让小乌鸦喝完水了，小乌鸦好开森啊~ 嘻嘻！</p>
             </div>
             <button ontouchstart="restart()">重新开始。</button>
         </div>
