@@ -109,7 +109,7 @@
             var alltime=0;
             var loop=false;
             var success=false;
-            var wtop=143;
+            var wtop=0;
             function gameover(){
                 document.getElementById("gameover").style.display="block";
                 document.title=alltime+"秒过去了，小乌鸦还没有喝完水，小乌鸦好可怜啊~";
@@ -131,13 +131,14 @@
                 time=21;
                 alltime=0;
                 loop=true;
+                wtop=180;
                 
             }
             function click(e){
                     //e.target.setAttribute("class","a");
                 wtop++;
                 document.getElementById("w").style.top=wtop+"px";
-                if(wtop>260){
+                if(wtop>250){
                     success=true;
                     gameover();
                 }
