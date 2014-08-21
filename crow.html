@@ -121,7 +121,7 @@
             var wtop=0;
             function gameover(){
                 document.getElementById("gameover").style.display="block";
-                document.title=alltime+"秒过去了，小乌鸦还没有喝完水，小乌鸦好可怜啊~";
+                document.title=(alltime-1)+"秒过去了，小乌鸦还没有喝完水，小乌鸦好可怜啊~";
                 document.getElementById("msg_ok").style.display="none";
                 document.getElementById("msg_over").style.display="none";
                 if(success){
@@ -197,7 +197,8 @@
         <div id="gamestart">
             <div class="msg">
                 <p>玩法：</p>
-                <p>点击吸管让小乌鸦把这杯水喝完！</p>
+                <p>给你15秒的时间！</p>
+                <p>点击吸管让乌鸦把水喝完！</p>
             </div>
             <button ontouchstart="restart()">开始游戏！</button>
         </div>
