@@ -200,9 +200,9 @@
         bgX=0;
         step=100;
         loop=false;
-        birdspeed=1;
-        ycspeed=1;
-        gamespeed=1000/256;
+        birdspeed=0.5;
+        ycspeed=0.5;
+        gamespeed=1000/512;
         function click(){
             //playerY-=step;
             //player.style.top=playerY+"px";
@@ -276,7 +276,7 @@
             var ycs=document.getElementsByClassName("yc");
             for(var i=0;i<ycs.length;i++){
                 if(ycs[i].hasAttribute("left")){
-                    var left=parseInt(ycs[i].getAttribute("left"));
+                    var left=parseFloat(ycs[i].getAttribute("left"));
                     left-=ycspeed;
                     ycs[i].setAttribute("left",left);
                     ycs[i].style.left=left+"px";
@@ -284,7 +284,7 @@
                         ycs[i].parentElement.removeChild(ycs[i]);
                         makeAyc();
                     }else{
-                        var top=parseInt(ycs[i].getAttribute("top"));
+                        var top=parseFloat(ycs[i].getAttribute("top"));
                         if((playerY+50)>top && (playerX+50)>left){
                             gameover();
                         }
@@ -301,8 +301,8 @@
             if(loop){
 
                 if(player.hasAttribute("topTo")){
-                    var topTo=parseInt(player.getAttribute("topTo"));
-                    console.log(topTo);
+                    var topTo=parseFloat(player.getAttribute("topTo"));
+                    //console.log(topTo);
                     if(topTo<playerY){
                         playerY-=birdspeed;
                         if(playerY<=0){
