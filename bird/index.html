@@ -34,7 +34,7 @@
             right: 0px;
             top: 0px;
             height: 312px;
-            -webkit-animation: clouds 864000s;
+            /*-webkit-animation: clouds 864000s;*/
         }
         @-webkit-keyframes footer{
             0%{
@@ -52,7 +52,8 @@
             left: 0px;
             right: 0px;
             bottom: 0px;
-            -webkit-animation: footer 864000s;
+            /*-webkit-animation: footer 864000s;*/
+            /*animation: footer 864000s;*/
             text-align: center;
             line-height: 273px;
             color: rgba(255,255,255,0.9);
@@ -196,6 +197,7 @@
     <script>
         playerX=20;
         playerY=100;
+        bgX=0;
         step=100;
         loop=false;
         function click(){
@@ -231,6 +233,8 @@
             resize();
             document.getElementById("gameoverbox").style.display="none";
             document.getElementById("welcomebox").style.display="block";
+            //setInterval(looping,1000/128);
+            setTimeout(looping,1000/128);
         }
         function resize(){
             w=document.body.scrollWidth;
@@ -246,6 +250,11 @@
             //重新渲染player的位置
             player.style.top=playerY+"px";
             player.style.left=playerX+"px";
+        }
+        function upBg(){
+            bgX-=0.1;
+            document.getElementById("clouds").style.backgroundPosition=bgX+"px 0px";
+            document.getElementById("footer").style.backgroundPosition=bgX+"px 0px";
         }
         function makeAyc(){
             yc_num++;
@@ -285,6 +294,7 @@
             }
         }
         function looping(){
+            upBg();
             if(loop){
 
                 if(player.hasAttribute("topTo")){
@@ -306,10 +316,11 @@
                 upYC();
                 checking();
             }
+            setTimeout(looping,1000/128);
         }
         window.addEventListener("load",init,false);
         window.addEventListener("resize",resize,false);
-        setInterval(looping,1000/128);
+        
     </script>
 </head>
 <body>
@@ -319,7 +330,7 @@
         <div class="zui"></div>
         <div class="fly"></div>
     </div>
-    <div class="footer">乌鸦作品<span style="display:none"><script language="javascript" type="text/javascript" src="http://js.users.51.la/17258749.js"></script></span></div>
+    <div id="footer" class="footer">乌鸦作品<span style="display:none"><script language="javascript" type="text/javascript" src="http://js.users.51.la/17258749.js"></script></span></div>
     <div id="gameoverbox">
         <div class="box">
             <p>右上角分享至朋友圈炫耀一下吧</p>
