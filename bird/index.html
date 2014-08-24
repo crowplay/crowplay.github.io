@@ -200,6 +200,8 @@
         bgX=0;
         step=100;
         loop=false;
+        birdspeed=2;
+        ycspeed=2;
         function click(){
             //playerY-=step;
             //player.style.top=playerY+"px";
@@ -269,7 +271,7 @@
             document.getElementById("ycsbox").appendChild(div);
         }
         function upYC(){
-            var ycspeed=1;
+            
             var ycs=document.getElementsByClassName("yc");
             for(var i=0;i<ycs.length;i++){
                 if(ycs[i].hasAttribute("left")){
@@ -301,7 +303,7 @@
                     var topTo=parseInt(player.getAttribute("topTo"));
                     console.log(topTo);
                     if(topTo<playerY){
-                        playerY--;
+                        playerY-=birdspeed;
                         if(playerY<=0){
                             playerY=0;
                         }
@@ -309,14 +311,14 @@
                         player.removeAttribute("topTo");
                     }
                 }else{
-                    playerY++;
+                    playerY+=birdspeed;
                     
                 }
                 upPlayer();
                 upYC();
                 checking();
             }
-            setTimeout(looping,1000/128);
+            setTimeout(looping,1000/64);
         }
         window.addEventListener("load",init,false);
         window.addEventListener("resize",resize,false);
