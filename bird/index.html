@@ -200,8 +200,9 @@
         bgX=0;
         step=100;
         loop=false;
-        birdspeed=2;
-        ycspeed=2;
+        birdspeed=1;
+        ycspeed=1;
+        gamespeed=1000/256;
         function click(){
             //playerY-=step;
             //player.style.top=playerY+"px";
@@ -236,7 +237,7 @@
             document.getElementById("gameoverbox").style.display="none";
             document.getElementById("welcomebox").style.display="block";
             //setInterval(looping,1000/128);
-            setTimeout(looping,1000/128);
+            setTimeout(looping,gamespeed);
         }
         function resize(){
             w=document.body.scrollWidth;
@@ -318,7 +319,7 @@
                 upYC();
                 checking();
             }
-            setTimeout(looping,1000/64);
+            setTimeout(looping,gamespeed);
         }
         window.addEventListener("load",init,false);
         window.addEventListener("resize",resize,false);
