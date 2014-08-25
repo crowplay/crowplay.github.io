@@ -210,9 +210,9 @@
         bgX=0;
         step=100;
         loop=false;
-        birdspeed=1;
-        ycspeed=1;
-        gamespeed=1000/512;
+        birdspeed=2;
+        ycspeed=2;
+        var fps = 64;
         function click(){
             //playerY-=step;
             //player.style.top=playerY+"px";
@@ -248,7 +248,9 @@
             document.getElementById("gameoverbox").style.display="none";
             document.getElementById("welcomebox").style.display="block";
             //setInterval(looping,1000/128);
-            setTimeout(looping,gamespeed);
+            //setTimeout(looping,gamespeed);
+            //animate(looping,gamespeed);
+            requestTimeout(looping,1000/fps);
         }
         function resize(){
             w=document.body.scrollWidth;
@@ -357,10 +359,90 @@
                 upYC();
                 checking();
             }
-            setTimeout(looping,gamespeed);
+            //setTimeout(looping,gamespeed);
+            requestTimeout(looping,1000/fps);
             
         }
 
+        //
+        window.requestAnimFrame = (function() {
+            return  window.requestAnimationFrame       || 
+                    window.webkitRequestAnimationFrame || 
+                    window.mozRequestAnimationFrame    || 
+                    window.oRequestAnimationFrame      || 
+                    window.msRequestAnimationFrame     || 
+                    function(/* function */ callback, /* DOMElement */ element){
+                        window.setTimeout(callback, 1000 / 60);
+                    };
+        })();
+        //
+        window.requestInterval = function(fn, delay) {
+            if( !window.requestAnimationFrame       && 
+                !window.webkitRequestAnimationFrame && 
+                !(window.mozRequestAnimationFrame && window.mozCancelRequestAnimationFrame) && // Firefox 5 ships without cancel support
+                !window.oRequestAnimationFrame      && 
+                !window.msRequestAnimationFrame)
+                    return window.setInterval(fn, delay);
+
+            var start = new Date().getTime(),
+                handle = new Object();
+
+            function loop() {
+                var current = new Date().getTime(),
+                    delta = current - start;
+
+                if(delta >= delay) {
+                    fn.call();
+                    start = new Date().getTime();
+                }
+
+                handle.value = requestAnimFrame(loop);
+            };
+
+            handle.value = requestAnimFrame(loop);
+            return handle;
+        }
+        window.clearRequestInterval = function(handle) {
+            window.cancelAnimationFrame ? window.cancelAnimationFrame(handle.value) :
+            window.webkitCancelAnimationFrame ? window.webkitCancelAnimationFrame(handle.value) :
+            window.webkitCancelRequestAnimationFrame ? window.webkitCancelRequestAnimationFrame(handle.value) : /* Support for legacy API */
+            window.mozCancelRequestAnimationFrame ? window.mozCancelRequestAnimationFrame(handle.value) :
+            window.oCancelRequestAnimationFrame	? window.oCancelRequestAnimationFrame(handle.value) :
+            window.msCancelRequestAnimationFrame ? window.msCancelRequestAnimationFrame(handle.value) :
+            clearInterval(handle);
+        };
+        //
+        window.requestTimeout = function(fn, delay) {
+            if( !window.requestAnimationFrame      	&& 
+                !window.webkitRequestAnimationFrame && 
+                !(window.mozRequestAnimationFrame && window.mozCancelRequestAnimationFrame) && // Firefox 5 ships without cancel support
+                !window.oRequestAnimationFrame      && 
+                !window.msRequestAnimationFrame)
+                    return window.setTimeout(fn, delay);
+
+            var start = new Date().getTime(),
+                handle = new Object();
+
+            function loop(){
+                var current = new Date().getTime(),
+                    delta = current - start;
+
+                delta >= delay ? fn.call() : handle.value = requestAnimFrame(loop);
+            };
+
+            handle.value = requestAnimFrame(loop);
+            return handle;
+        };
+        window.clearRequestTimeout = function(handle) {
+            window.cancelAnimationFrame ? window.cancelAnimationFrame(handle.value) :
+            window.webkitCancelAnimationFrame ? window.webkitCancelAnimationFrame(handle.value) :
+            window.webkitCancelRequestAnimationFrame ? window.webkitCancelRequestAnimationFrame(handle.value) : /* Support for legacy API */
+            window.mozCancelRequestAnimationFrame ? window.mozCancelRequestAnimationFrame(handle.value) :
+            window.oCancelRequestAnimationFrame	? window.oCancelRequestAnimationFrame(handle.value) :
+            window.msCancelRequestAnimationFrame ? window.msCancelRequestAnimationFrame(handle.value) :
+            clearTimeout(handle);
+        };
+        //
 
         window.addEventListener("load",init,false);
         window.addEventListener("resize",resize,false);
