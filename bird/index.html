@@ -250,7 +250,8 @@
             //setInterval(looping,1000/128);
             //setTimeout(looping,gamespeed);
             //animate(looping,gamespeed);
-            requestTimeout(looping,1000/fps);
+            looping();
+            //requestTimeout(looping,1000/fps);
         }
         function resize(){
             w=document.body.scrollWidth;
@@ -359,8 +360,8 @@
                 upYC();
                 checking();
             }
-            //setTimeout(looping,gamespeed);
-            requestTimeout(looping,1000/fps);
+            setTimeout(looping,1000/fps);
+            //requestTimeout(looping,1000/fps);
             
         }
 
