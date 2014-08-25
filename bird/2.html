@@ -370,7 +370,7 @@
         setTimeout(callback,gamespeed);
         };
         function animate(callback,time) {
-            time = time || 1000/24; // 默认0.8秒
+            time = time || gamespeed; // 默认gamespeed秒
             var startTime = (new Date()).getTime();
             function go(timestamp) {
                 timestamp = timestamp || (new Date()).getTime();
