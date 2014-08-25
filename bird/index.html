@@ -212,7 +212,7 @@
         loop=false;
         birdspeed=2;
         ycspeed=2;
-        var fps = 256;
+        fps = 256;
         function click(){
             //playerY-=step;
             //player.style.top=playerY+"px";
@@ -371,8 +371,8 @@
                     window.mozRequestAnimationFrame    || 
                     window.oRequestAnimationFrame      || 
                     window.msRequestAnimationFrame     || 
-                    function(/* function */ callback, /* DOMElement */ element){
-                        window.setTimeout(callback, 1000 / 60);
+                    function(callback){
+                        window.setTimeout(callback,1000/fps);
                     };
         })();
         //
