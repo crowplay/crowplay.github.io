@@ -147,14 +147,24 @@
             bottom: 0px;
         }
         
-        .yc b{
-            width: 100px;
+        .yc b.top{
+            width: 50px;
             height: 19px;
             background: url(images/thead.png);
             background-repeat: no-repeat;
             display: block;
             position: absolute;
             top: 0px;
+            left: 0px;
+        }
+        .yc b.bot{
+            width: 50px;
+            height: 19px;
+            background: url(images/thead.png);
+            background-repeat: no-repeat;
+            display: block;
+            position: absolute;
+            bottom: 0px;
             left: 0px;
         }
         #gameoverbox,#welcomebox{
@@ -200,8 +210,8 @@
         bgX=0;
         step=100;
         loop=false;
-        birdspeed=0.5;
-        ycspeed=0.5;
+        birdspeed=1;
+        ycspeed=1;
         gamespeed=1000/512;
         function click(){
             //playerY-=step;
@@ -233,6 +243,7 @@
         function init(){
             player=document.getElementById("bird");
             window.addEventListener("touchstart",click,false);
+            window.addEventListener("click",click,false);
             resize();
             document.getElementById("gameoverbox").style.display="none";
             document.getElementById("welcomebox").style.display="block";
@@ -264,10 +275,33 @@
             var b=document.createElement("b");
             var div=document.createElement("div");
             var top=Math.floor(Math.random() * h/2)+100;
-            div.style.top=top+"px";
+            
+            //if((Math.floor(Math.random() * 10)+1)>5){
+            if(yc_num % 2==0){
+                //top=0;
+                top=0;
+                var height=Math.floor(Math.random() * h/2)+100;
+                div.setAttribute("height",height);
+                div.style.height=height+"px";
+                b.setAttribute("class","bot");
+            }else{
+                
+
+                div.setAttribute("height",h-top);
+                div.style.height=h-top+"px";
+
+                div.setAttribute("height",h-top);
+                div.style.height=h-top+"px";
+                b.setAttribute("class","top");
+
+                
+            }
             div.setAttribute("top",top);
+            div.style.top=top+"px";
+            div.setAttribute("width",50);
+            div.style.width="50px";
             div.setAttribute("left",w+60);
-            div.setAttribute("class","yc");
+            div.setAttribute("class","yc"); 
             div.appendChild(b);
             document.getElementById("ycsbox").appendChild(div);
         }
@@ -285,9 +319,13 @@
                         makeAyc();
                     }else{
                         var top=parseFloat(ycs[i].getAttribute("top"));
-                        if((playerY+50)>top && (playerX+50)>left){
-                            gameover();
+                        var height=parseFloat(ycs[i].getAttribute("height"));
+                        if((playerY+50)>top && playerY<height){
+                            if((playerX+50)>left && (playerX+50)<left+50){
+                                gameover();
+                            }
                         }
+                        
                     }
                 }else{
                     ycs[i].setAttribute("left",w+60);
@@ -320,7 +358,10 @@
                 checking();
             }
             setTimeout(looping,gamespeed);
+            
         }
+
+
         window.addEventListener("load",init,false);
         window.addEventListener("resize",resize,false);
         
