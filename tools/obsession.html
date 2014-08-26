@@ -36,10 +36,15 @@
         #save,#msg{
             display: none;
         }
-        button{
-            width: 200px;
-            height: 30px;
+        p{
+            width: 90%;
             margin: 0 auto;
+            text-align: left;
+        }
+        button{
+            width: 30px;
+            height: 30px;
+            display: inline-block;
         }
         #footer{
             width: 100%;
@@ -53,6 +58,30 @@
         }
     </style>
     <script>
+        function draw(){
+            ctx.clearRect(0,0,mycanvas.width,mycanvas.height);
+            ctx.drawImage(img,0,0,mycanvas.width,mycanvas.height);
+
+            ctx.beginPath();
+            ctx.arc(165,36,35, 0, Math.PI*2, true);
+            ctx.fillStyle = "#f00";
+            ctx.fill();
+        }
+        function text(n){
+            draw();
+            // 设置字体
+            ctx.font = "Bold 40px Arial";
+            // 设置对齐方式
+            ctx.textAlign = "center";
+            // 设置填充颜色
+            ctx.fillStyle = "#fff";
+            // 设置字体内容，以及在画布上的位置
+            ctx.fillText(n,165,50);
+            document.getElementById("save").src=mycanvas.toDataURL("image/png");
+            document.getElementById("mycanvas").style.display="none";
+            document.getElementById("save").style.display="block";
+            document.getElementById("msg").style.display="block";
+        }
         function upload(event){
             document.getElementById("mycanvas").style.display="block";
             document.getElementById("save").style.display="none";
@@ -68,26 +97,11 @@
 
                     img = new Image();
                     img.onload = function() {
-                        ctx.clearRect(0,0,mycanvas.width,mycanvas.height);
-                        ctx.drawImage(this,0,0,mycanvas.width,mycanvas.height);
+
                         //
-                        ctx.beginPath();
-                        ctx.arc(165,36,35, 0, Math.PI*2, true);
-                        ctx.fillStyle = "#f00";
-                        ctx.fill();
+
                         //
-                        // 设置字体
-                        ctx.font = "Bold 40px Arial";
-                        // 设置对齐方式
-                        ctx.textAlign = "center";
-                        // 设置填充颜色
-                        ctx.fillStyle = "#fff";
-                        // 设置字体内容，以及在画布上的位置
-                        ctx.fillText("2",165,50);
-                        document.getElementById("save").src=mycanvas.toDataURL("image/png");
-                        document.getElementById("mycanvas").style.display="none";
-                        document.getElementById("save").style.display="block";
-                        document.getElementById("msg").style.display="block";
+                        text(2);
                         //console.log(mycanvas.toDataURL("image/png"));
                     }
                     img.src=imgURL;
@@ -123,7 +137,17 @@
     <canvas id="mycanvas"></canvas>
     <img id="save" src="" width="200" height="200">
 </div>
-<p id="msg">长按图片，保存图片，或另存为。如果你觉得这个工具好用，请点击右上角，分享到朋友圈。让更多的人受益。</p>
+<div id="msg">
+    <p>长按图片，保存图片，或另存为。如果你觉得这个工具好用，请点击右上角，分享到朋友圈。让更多的人受益。</p>
+    <p><button onclick="text(1);">1</button>
+    <button onclick="text(2);">2</button>
+    <button onclick="text(3);">3</button>
+        <button onclick="text(4);">4</button>
+        <button onclick="text(5);">5</button>
+        <button onclick="text(6);">6</button>
+        <button onclick="text(7);">7</button>
+        <button onclick="text(8);">8</button>
+        <button onclick="text(9);">9</button></div>
 <div id="footer">乌鸦作品<span style="display:none;"><script language="javascript" type="text/javascript" src="http://js.users.51.la/17264781.js"></script></span></div>
 </body>
 </html>
