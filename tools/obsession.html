@@ -28,10 +28,13 @@
             line-height: 40px;
             margin: 0 auto;
         }
-        #canvas{
+        #canvas,#save{
             width: 200px;
             height: 200px;
             margin: 0 auto;
+        }
+        #save,#msg{
+            display: none;
         }
         button{
             width: 200px;
@@ -51,6 +54,9 @@
     </style>
     <script>
         function upload(event){
+            document.getElementById("mycanvas").style.display="block";
+            document.getElementById("save").style.display="none";
+            document.getElementById("msg").style.display="none";
             var files = event.target.files,file;
             if (files && files.length > 0) {
                 file = files[0];
@@ -78,6 +84,10 @@
                         ctx.fillStyle = "#fff";
                         // 设置字体内容，以及在画布上的位置
                         ctx.fillText("2",165,50);
+                        document.getElementById("save").src=mycanvas.toDataURL("image/png");
+                        document.getElementById("mycanvas").style.display="none";
+                        document.getElementById("save").style.display="block";
+                        document.getElementById("msg").style.display="block";
                         //console.log(mycanvas.toDataURL("image/png"));
                     }
                     img.src=imgURL;
@@ -111,8 +121,9 @@
 <input type="file" id="take-picture" accept="image/*">
 <div id="canvas">
     <canvas id="mycanvas"></canvas>
+    <img id="save" src="" width="200" height="200">
 </div>
-<button onclick="down();">下载(打开后触动图片另存)</button>
+<p id="msg">长按图片，保存图片，或另存为。如果你觉得这个工具好用，请点击右上角，分享到朋友圈。让更多的人受益。</p>
 <div id="footer">乌鸦作品<span style="display:none;"><script language="javascript" type="text/javascript" src="http://js.users.51.la/17264781.js"></script></span></div>
 </body>
 </html>
