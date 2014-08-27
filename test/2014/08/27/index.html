@@ -19,12 +19,44 @@
         h2{
             text-align: left;
             width: 90%;
-            font-size: 1em;
+            font-size: 1.2em;
             margin: 0 auto;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        input{
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+        }
+        span{
+            width: auto;
+            height: 20px;
+            line-height: 20px;
+            margin: 0px 10px 0px 5px;
+            display: inline-block;
         }
         button{
             width: 30%;
+            height: 50px;
+            line-height: 50px;
             margin: 0 auto;
+            margin-top: 20px;
+        }
+        #finish{
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            bottom: 0px;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,.9);
+            display: none;
+        }
+        p{
+            color: #fff;
+            margin: 20px 0px 0px 0px;
         }
     </style>
 	<script>
@@ -60,6 +92,8 @@
                 msg="简直就是新闻达人";
             }
             document.title="我的新闻测试题得了"+v+"分，"+msg+"。你也来测测吧。";
+            document.getElementById("finishMSG").innerHTML="我的新闻测试题得了"+v+"分。"
+            document.getElementById("finish").style.display="block";
         }
         function ok(){
             v=0;//总分
@@ -126,5 +160,9 @@
 <body>
 	<div id="test"></div>
     <button onclick="ok();">答完了</button>
+<div id="finish">
+    <p id="finishMSG"></p>
+    <p>右上角分享你的成绩吧。</p>
+</div>
 </body>
 </html>
