@@ -3,7 +3,11 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>15秒看你能摇多少下</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable"/>
+    <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+    <meta content="telephone=no" name="format-detection"/>
+    <meta content="email=no" name="format-detection"/>
     <style>
         *{
             margin: 0px;
@@ -110,7 +114,7 @@
          }
     </style>
     <script>
-        var SHAKE_THRESHOLD = 6000;
+        var SHAKE_THRESHOLD = 3000;
         var last_update = 0;
         var x = y = z = last_x = last_y = last_z = 0;
         num=0;
