@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
-<head lang="zh">
+<head lang="en">
     <meta charset="UTF-8">
-    <title>15秒看你能摇手机多少下</title>
+    <title>15秒看你能摇多少下</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
         *{
@@ -155,11 +155,13 @@
             document.querySelector("#time").removeAttribute("class");
         }
         function timeHandler(){
-            time--;
-            var a=parseFloat((time/15)*100);
-            //document.querySelector("#time").style.height=a+"%";
-            if(time==0){
-                gameOver();
+            if(loop){
+                time--;
+                var a=parseFloat((time/15)*100);
+                //document.querySelector("#time").style.height=a+"%";
+                if(time==0){
+                    gameOver();
+                }
             }
         }
         setInterval(timeHandler,1000);
