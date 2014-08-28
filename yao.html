@@ -171,6 +171,9 @@
         function loadHandler(){
             document.querySelector("#gameOver").style.display="none";
             document.querySelector("#loading").style.display="none";
+            document.body.onselectstart = document.body.ondrag = function(){
+                return false;
+            }
         }
         window.addEventListener("load",loadHandler,false);
     </script>
