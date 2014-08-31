@@ -140,10 +140,11 @@
                 num++;
                 var fly=document.createElement("div");
                 fly.setAttribute("class","fly");
-                fly.style.width="20px";
-                fly.style.height="20px";
-                fly.style.top=Math.floor(Math.random() * 260)+1+"px";
-                fly.style.left=Math.floor(Math.random() * 260)+1+"px";
+                var wh=Math.floor(Math.random() * 30)+20+"px";
+                fly.style.width=wh;
+                fly.style.height=wh;
+                fly.style.top=Math.floor(Math.random() * 140)+140+"px";
+                fly.style.left=Math.floor(Math.random() * 180)+50+"px";
                 document.querySelector("#msg").appendChild(fly);
                 //document.querySelector("#msg").innerHTML=num;
             }
