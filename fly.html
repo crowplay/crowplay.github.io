@@ -134,6 +134,7 @@
             document.querySelector("#loading").style.display="none";
             document.querySelector("#welcome").style.display="none";
             document.querySelector("#time").setAttribute("class","select");
+            document.querySelector("#msg").innerHTML="";
         }
         function touchstartHandler(eventData){
             if(loop){
@@ -144,7 +145,7 @@
                 fly.style.width=wh;
                 fly.style.height=wh;
                 fly.style.top=Math.floor(Math.random() * 80)+140+"px";
-                fly.style.left=Math.floor(Math.random() * 180)+50+"px";
+                fly.style.left=Math.floor(Math.random() * 190)+20+"px";
                 fly.style.webkitTransform="rotate("+Math.floor(Math.random() * 360)+"deg)";
                 document.querySelector("#msg").appendChild(fly);
                 //document.querySelector("#msg").innerHTML=num;
