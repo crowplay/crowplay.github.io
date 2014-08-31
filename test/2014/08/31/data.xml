@@ -13,7 +13,7 @@
             </option>
             <option>
                 <text>巴黎</text>
-                <value>0</value>
+                <value>10</value>
             </option>
         </options>
     </subject>
@@ -35,7 +35,7 @@
         <options>
             <option>
                 <text>再等30分钟</text>
-                <value>0</value>
+                <value>20</value>
             </option>
             <option>
                 <text>立刻离开</text>
@@ -43,7 +43,7 @@
             </option>
             <option>
                 <text>一直等到对方出现</text>
-                <value>20</value>
+                <value>10</value>
             </option>
         </options>
     </subject>
@@ -65,7 +65,7 @@
         <options>
             <option>
                 <text>聪明</text>
-                <value>0</value>
+                <value>20</value>
             </option>
             <option>
                 <text>不聪明</text>
