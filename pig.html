@@ -123,7 +123,7 @@
             document.title="看你15秒能摇多少下";
             num=0;
             document.querySelector("#overnum").innerHTML=num;
-            time=16;
+            time=106;
             loop=true;
             document.querySelector("#gameOver").style.display="none";
             document.querySelector("#loading").style.display="none";
@@ -146,7 +146,7 @@
                     if (speed > SHAKE_THRESHOLD) {
 
                         num++;
-                        document.querySelector("#msg").innerHTML=num;
+                        document.querySelector("#msg").innerHTML=x;
                     }
                     last_x = x;
                     last_y = y;
@@ -185,7 +185,7 @@
 </head>
 <body>
 <div id="msgbox"><div id="msg">0</div></div>
-<footer>乌鸦作品<span style="display: none"><script language="javascript" type="text/javascript" src="http://js.users.51.la/17272910.js"></script></span></footer>
+<footer>乌鸦作品<span style="display: none"></span></footer>
 <div id="gameOver">
     <div id="share"></div>
     <p>当前成绩：<span id="overnum"></span>次！</p>
