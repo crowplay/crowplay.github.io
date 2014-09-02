@@ -2,7 +2,7 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>15秒看你能摇多少下</title>
+    <title>重力感应猪八戒</title>
     <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
     <meta content="yes" name="apple-mobile-web-app-capable"/>
     <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
@@ -111,9 +111,9 @@
         var last_update = 0;
         var x = y = z = last_x = last_y = last_z = 0;
         num=0;
-        loop=true;
+        loop=false;
         function restart(){
-            document.title="看你15秒能摇多少下";
+            //document.title="看你15秒能摇多少下";
             num=0;
             document.querySelector("#overnum").innerHTML=num;
             time=106;
@@ -149,8 +149,8 @@
             }
         }
         function gameOver(){
-            document.title="我15秒摇了"+num+"下手机，你能超过我吗？";
-            document.querySelector("#overnum").innerHTML=num;
+            //document.title="我15秒摇了"+num+"下手机，你能超过我吗？";
+            
             document.querySelector("#gameOver").style.display="block";
             document.querySelector("#time").removeAttribute("class");
             loop=false;
@@ -207,11 +207,11 @@
 <footer>乌鸦作品<span style="display: none"></span></footer>
 <div id="gameOver">
     <div id="share"></div>
-    <p>当前成绩：<span id="overnum"></span>次！</p>
+    <p></p>
     <button ontouchstart="restart();">重新开始</button>
 </div>
 <div id="welcome">
-    <p>玩法：你有15秒的时间，要快速地摇手机！</p>
+    <p></p>
     <button ontouchstart="restart();">开始</button>
 </div>
 <div id="loading">loading......</div>
