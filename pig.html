@@ -92,19 +92,12 @@
             color: #ccc;
             font-size: .9em;
         }
-        #msgbox{
-            position: fixed;
-            width: 50%;
-            height: 50%;
-            left: 50%;
-            top: 50%;
-        }
-        #msgbox #msg{
-             position: absolute;
+        #msg{
+             position: fixed;
              width: 180px;
              height: 180px;
-             left: -90px;
-             top: -90px;
+             left: 90px;
+             bottom: 10px;
              background: #ffae00;
              border-radius: 100%;
             text-align: center;
@@ -173,6 +166,31 @@
             }
         }
         setInterval(timeHandler,1000);
+        var player_x=90;
+        
+        function player_to_left(){
+            player_x-=1;
+        }
+        player_to_right(){
+            player_x+=1;
+        }
+        function up_player(){
+            document.querySelector("#msg").style.left=player_x+"px";
+        }
+        function gameHandler(){
+            if(loop){
+                if(last_x>0){
+                    //left
+                    player_to_left();
+                }
+                if(last_x<0){
+                    //right
+                    player_to_right();
+                }
+                up_player();
+            }
+        }
+        setInterval(gameHandler,1000/24);
         window.addEventListener("devicemotion",deviceMotionHandler,false);
         function loadHandler(){
             document.querySelector("#gameOver").style.display="none";
