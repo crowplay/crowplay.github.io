@@ -145,10 +145,11 @@
                         
                     }
                     //document.querySelector("#msg").innerHTML=x;
-                    document.querySelector("#time").innerHTML=x;
-                    last_x = x;
+                    
+                    last_x = parseInt(x);
                     last_y = y;
                     last_z = z;
+                    document.querySelector("#time").innerHTML=last_x;
                 }
             }
         }
