@@ -12,7 +12,7 @@ player_h=20;
 player_last_x=player_x;
 player_last_y=player_y;
 
-player_step=1;
+player_step=4;
 fps=1000/256;
 
 function player_save(){
@@ -107,8 +107,8 @@ function gameover(){
 function restart(){
     
     time=0;
-    player_x=200;
-    player_y=290;
+    player_x=230;
+    player_y=320;
     loop=true;
     
     //隐藏正在载入的div
@@ -123,7 +123,7 @@ function restart(){
 loadingResurcesNum=0;
 //判断资源是否载入
 function loadIsOk(){
-    if(loadingResurcesNum==3){
+    if(loadingResurcesNum==4){
         //已经载入 清除判断载入计时器
         clearInterval(loadInterval);
         //欢迎画面
@@ -133,9 +133,14 @@ function loadIsOk(){
 //载入资源
 function loadingResurces(){
     player_img=new Image();
+    player_check_img=new Image();
     bg_print=new Image();
     bg_check=new Image();
     player_img.onload = function() {
+        loadingResurcesNum++;
+        //
+    }
+    player_check_img.onload = function() {
         loadingResurcesNum++;
         document.getElementById("loading").innerHTML+="<br> player ok";
         //
@@ -145,6 +150,7 @@ function loadingResurces(){
         player_data = c.getImageData(player_x,player_y,player_w,player_h).data;
         //
     }
+    player_check_img.src="resoures/player_check.png";
     bg_print.onload = function() {
         loadingResurcesNum++;
         document.getElementById("loading").innerHTML+="<br> change ok";
@@ -317,9 +323,9 @@ function checking(){
                        //alert('yellow'); 
                         loop=false;
                         player_to_back();
-                        //console.log("yellow")
-                        //console.log(player_y);
-                        //console.log(player_last_y);
+                        console.log("yellow")
+                        console.log(player_y);
+                        console.log(player_last_y);
                         
                     }
                     //遇到红色（敌人）悬崖等
