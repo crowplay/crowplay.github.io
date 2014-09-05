@@ -107,8 +107,8 @@ function gameover(){
 function restart(){
     
     time=0;
-    player_x=230;
-    player_y=320;
+    player_x=200;
+    player_y=290;
     loop=true;
     
     //隐藏正在载入的div
