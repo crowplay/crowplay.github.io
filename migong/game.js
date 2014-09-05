@@ -317,9 +317,9 @@ function checking(){
                        //alert('yellow'); 
                         loop=false;
                         player_to_back();
-                        console.log("yellow")
-                        console.log(player_y);
-                        console.log(player_last_y);
+                        //console.log("yellow")
+                        //console.log(player_y);
+                        //console.log(player_last_y);
                         
                     }
                     //遇到红色（敌人）悬崖等
