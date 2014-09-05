@@ -77,7 +77,7 @@ function player(){
 }
 function printTime(){
     c.font="30px Georgia";
-    c.fillText(time,30,30);
+    c.fillText(time,100,30);
 }
 
 function printBG(){
