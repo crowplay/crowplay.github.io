@@ -12,7 +12,7 @@ player_h=20;
 player_last_x=player_x;
 player_last_y=player_y;
 
-player_step=4;
+player_step=1;
 fps=1000/256;
 
 function player_save(){
@@ -146,7 +146,7 @@ function loadingResurces(){
         //
         c.clearRect(0, 0,canvas_width,canvas_height);
         c.globalCompositeOperation = 'source-over';
-        c.drawImage(player_img,player_x,player_y,player_w,player_h);
+        c.drawImage(player_check_img,player_x,player_y,player_w,player_h);
         player_data = c.getImageData(player_x,player_y,player_w,player_h).data;
         //
     }
