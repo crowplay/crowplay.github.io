@@ -12,7 +12,7 @@ player_h=20;
 player_last_x=player_x;
 player_last_y=player_y;
 
-player_step=4;
+player_step=1;
 fps=1000/256;
 
 function player_save(){
