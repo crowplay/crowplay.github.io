@@ -2,7 +2,8 @@
  * Created by gong on 2014/9/3.
  */
 loop=false;//全局控制
-
+canvas_width = 320;
+canvas_height = 400;
 
 player_x=10;
 player_y=10;
@@ -13,11 +14,13 @@ player_last_x=player_x;
 player_last_y=player_y;
 
 player_step=1;
-fps=1000/512;
+fps=1000/256;
 
 function player_save(){
     player_last_x=player_x;
     player_last_y=player_y;
+}
+function player_to_no(){
 }
 function player_to_left(){
     if(loop){
@@ -27,7 +30,6 @@ function player_to_left(){
             player_x=0;
         }
     }
-    player()
 }
 function player_to_right(){
     if(loop){
@@ -37,7 +39,6 @@ function player_to_right(){
             player_x=canvas_width-player_w;
         }
     }
-    player()
 }
 function player_to_up(){
     if(loop){
@@ -47,7 +48,6 @@ function player_to_up(){
             player_y=0;
         }
     }
-    player()
 }
 function player_to_down(){
     if(loop){
@@ -57,7 +57,6 @@ function player_to_down(){
             player_y=canvas_height-player_h;
         }
     }
-    player()
 }
 function player_to_back(){
 
@@ -70,10 +69,7 @@ function player_to_back(){
 }
 function player(){
     
-    //
-        
-        checking();
-    //
+    c.drawImage(player_img,player_x,player_y,player_w,player_h);
 }
 function printTime(){
     c.font="30px Georgia";
@@ -81,10 +77,10 @@ function printTime(){
 }
 
 function printBG(){
-    c.drawImage(bg_print,0,0,300,387);
+    c.drawImage(bg_print,0,0,canvas_width,canvas_height);
 }
 function printBG_check(){
-    c.drawImage(bg_check,0,0,300,387);
+    c.drawImage(bg_check,0,0,canvas_width,canvas_height);
 }
 function welcome(){
     //隐藏正在载入的div
@@ -95,20 +91,21 @@ function welcome(){
 function success(){
     loop=false;
     document.getElementById("success").style.display="block";
-    document.title="我"+time+"秒就找到宝石了，你行吗？";
+    document.title="我"+time+"秒通过了智商测试，好开森，你行吗？";
     document.getElementById("msg_success").innerHTML=document.title;
 }
 function gameover(){
     loop=false;
     document.getElementById("gameover").style.display="block";
-    document.title="我在第"+time+"秒挂掉了，没有找到宝石，好桑心。。。";
+    document.title="我在第"+time+"秒挂掉了，没有通过智商测试，好桑心。。。";
     document.getElementById("msg_gameover").innerHTML=document.title;
 }
 function restart(){
     
     time=0;
-    player_x=230;
-    player_y=320;
+    player_x=35;
+    player_y=92;
+	player_to=player_to_no;
     loop=true;
     
     //隐藏正在载入的div
@@ -174,8 +171,7 @@ function init(){
     //canvas_width=document.getElementById("loading").scrollWidth;
     //canvas_height=document.getElementById("loading").scrollHeight;
     canvas=document.getElementById("myCanvas");
-    canvas_width = 300;
-    canvas_height = 387;
+
     canvas.width=canvas_width;
     canvas.height=canvas_height;
     canvas.top = 0;
@@ -187,7 +183,7 @@ function init(){
         if(loop){
             var touchobj = e.changedTouches[0] // reference first touch point (ie: first finger)
             startx = parseInt(touchobj.clientX) // get x position of touch point relative to left edge of browser
-            //starty = parseInt(touchobj.clientY) // get x position of touch point relative to left edge of browser
+            starty = parseInt(touchobj.clientY) // get x position of touch point relative to left edge of browser
             //statusdiv.innerHTML = 'Status: touchstart<br /> ClientX: ' + startx + 'px'
             e.preventDefault();
         }
@@ -196,28 +192,12 @@ function init(){
     canvas.addEventListener('touchmove', function (e) {
         if(loop){
             var touchobj = e.changedTouches[0] // reference first touch point for this event
-            var distX = parseInt(touchobj.clientX) - startx;
-            var distY = parseInt(touchobj.clientY) - starty;
-
-            if (distX > document.body.scrollWidth/3) {
-                player_to_right();
-            }
-            if (distX < document.body.scrollWidth/3) {
-                player_to_left();
-            }
-            //startx = parseInt(touchobj.clientX);
             
-            if (distY > document.body.scrollWidth/3) {
-                player_to_down();
-            }
-            if (distY < -document.body.scrollWidth/3) {
-                player_to_up();
-            }
             
             //gameCtrl.player.x+=distX;
             //gameCtrl.player.y+=distY;
             //statusdiv.innerHTML = 'Status: touchmove<br /> Horizontal distance traveled: ' + dist + 'px'
-            e.preventDefault();
+            //e.preventDefault();
         }
     }, false);
 
@@ -225,7 +205,24 @@ function init(){
         if(loop){
             var touchobj = e.changedTouches[0] // reference first touch point for this event
             //statusdiv.innerHTML = 'Status: touchend<br /> Resting x coordinate: ' + touchobj.clientX + 'px'
-            e.preventDefault();
+            var distX = parseInt(touchobj.clientX) - startx;
+            var distY = parseInt(touchobj.clientY) - starty;
+			var len=80;
+            if (distX > len) {
+                player_to=player_to_right;
+            }
+            else if (distX < -len) {
+                player_to=player_to_left;
+            }
+            //startx = parseInt(touchobj.clientX);
+            
+            else if (distY > len) {
+                player_to=player_to_down;
+            }
+            else if (distY < -len) {
+                player_to=player_to_up;
+            }
+			e.preventDefault();
         }
     }, false);
     //载入资源
@@ -234,7 +231,9 @@ function init(){
     loadInterval=setInterval(loadIsOk,1000);
 }
 setInterval(function(){
-    time++;
+	if(loop){
+		time++;
+	}
 },1000);
 window.addEventListener("load",init,false);
 document.addEventListener("keypress", function (e) {
@@ -319,6 +318,7 @@ function checking(){
                 //
                 if (data[i]>0 && player_data[i] > 0) {
                     //遇到障碍物
+					console.log(data[i-3]+"-"+data[i-2]+"-"+data[i-1]);
                     if(data[i-3]==255 && data[i-2]==153 && data[i-1]==0){
                        //alert('yellow'); 
                         loop=false;
@@ -352,7 +352,8 @@ function checking(){
     }
     c.clearRect(0, 0,canvas_width,canvas_height);
     printBG();
-    c.drawImage(player_img,player_x,player_y,player_w,player_h);
+	
+    player();
     printTime();
     
     //c.clearRect(0, 0,canvas_width,canvas_height);
@@ -360,6 +361,7 @@ function checking(){
 function looping(){
     if(loop){
         //
+		/*
         if(last_x>1){
             //left
             player_to_left();
@@ -375,13 +377,11 @@ function looping(){
         if(last_y<-1){
             //right
             player_to_up();
-        }
+        }*/
         //
         //c.clearRect(0, 0, canvas_width, canvas_height);
-        printBG();
-        player();
-        printTime();
-        //checking();
+		player_to();
+        checking();
     }
 }
 setInterval(looping,fps);
