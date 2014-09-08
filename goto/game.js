@@ -16,6 +16,7 @@ player_last_y=player_y;
 player_step=1;
 fps=1000/256;
 
+player_go_can_change=true;
 function player_save(){
     player_last_x=player_x;
     player_last_y=player_y;
@@ -107,7 +108,7 @@ function restart(){
     player_y=92;
 	player_to=player_to_no;
     loop=true;
-    
+    player_go_can_change=true;
     //隐藏正在载入的div
     document.getElementById("loading").style.display="none";
     //欢迎页隐藏
@@ -201,7 +202,7 @@ function init(){
     }, false);
 
     canvas.addEventListener('touchend', function (e) {
-        if(loop){
+        if(loop && player_go_can_change){
             var touchobj = e.changedTouches[0] // reference first touch point for this event
             //statusdiv.innerHTML = 'Status: touchend<br /> Resting x coordinate: ' + touchobj.clientX + 'px'
             var distX = parseInt(touchobj.clientX) - startx;
@@ -221,6 +222,7 @@ function init(){
             else if (distY < -len) {
                 player_to=player_to_up;
             }
+			player_go_can_change=false;
 			e.preventDefault();
         }
     }, false);
@@ -317,7 +319,8 @@ function checking(){
                 //
                 if (data[i]>0 && player_data[i] > 0) {
                     //遇到障碍物
-					console.log(data[i-3]+"-"+data[i-2]+"-"+data[i-1]);
+					//console.log(data[i-3]+"-"+data[i-2]+"-"+data[i-1]);
+					player_go_can_change=true;
                     if(data[i-3]==255 && data[i-2]==153 && data[i-1]==0){
                        //alert('yellow'); 
                         loop=false;
