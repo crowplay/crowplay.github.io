@@ -135,32 +135,31 @@ function loadingResurces(){
     bg_check=new Image();
     player_img.onload = function() {
         loadingResurcesNum++;
-        //
+       
     }
     player_check_img.onload = function() {
         loadingResurcesNum++;
-        document.getElementById("loading").innerHTML+="<br> player ok";
-        //
+        
         c.clearRect(0, 0,canvas_width,canvas_height);
         c.globalCompositeOperation = 'source-over';
         c.drawImage(player_check_img,player_x,player_y,player_w,player_h);
         player_data = c.getImageData(player_x,player_y,player_w,player_h).data;
-        //
+        
     }
     player_check_img.src="resoures/player_check.png";
     bg_print.onload = function() {
         loadingResurcesNum++;
-        document.getElementById("loading").innerHTML+="<br> change ok";
+        
     }
     bg_check.onload = function() {
         loadingResurcesNum++;
-        document.getElementById("loading").innerHTML+="<br> yuebing ok";
+        
     }
-    document.getElementById("loading").innerHTML+="<br> loading player...";
+    
     player_img.src="resoures/player.png";
-    document.getElementById("loading").innerHTML+="<br> loading change...";
+
     bg_print.src="resoures/bg_print.png";
-    document.getElementById("loading").innerHTML+="<br> loading yuebing...";
+    
     bg_check.src="resoures/bg_check.png";
 }
 //初始化
