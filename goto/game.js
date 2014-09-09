@@ -14,7 +14,7 @@ player_last_x=player_x;
 player_last_y=player_y;
 
 player_step=1;
-fps=1000/256;
+fps=1000/512;
 
 player_go_can_change=true;
 function player_save(){
@@ -207,7 +207,7 @@ function init(){
             //statusdiv.innerHTML = 'Status: touchend<br /> Resting x coordinate: ' + touchobj.clientX + 'px'
             var distX = parseInt(touchobj.clientX) - startx;
             var distY = parseInt(touchobj.clientY) - starty;
-			var len=80;
+			var len=40;
             if (distX > len) {
                 player_to=player_to_right;
             }
