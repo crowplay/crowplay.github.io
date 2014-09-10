@@ -279,13 +279,6 @@ function init(){
     canvas.left = 0;
     c = canvas.getContext('2d');
     //
-    canvas.addEventListener('click', function (e) {
-        if(loop && player_go_can_change){
-            player_go_can_change=false;
-            player_to=player_to_up;
-            e.preventDefault();
-        }
-    }, false);
     canvas.addEventListener('touchstart', function (e) {
         if(loop && player_go_can_change){
             player_go_can_change=false;
