@@ -298,7 +298,7 @@ window.addEventListener("load",init,false);
 function checking(){
     
     c.clearRect(0, 0,canvas_width,canvas_height);
-    printBG_check();
+    print_bird();
     //以猪八戒为新的坐标获取data，对比原来的猪八戒图片，看像素是否重叠。
     var data = c.getImageData(player_x,player_y,player_w,player_h).data;
     //不每个像素都进行对比
@@ -352,7 +352,8 @@ function checking(){
 function looping(){
     if(loop){
 	player_to();
-        checking();
+	player();
+        //checking();
     }
 }
 setInterval(looping,fps);
