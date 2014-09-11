@@ -159,7 +159,8 @@ function player(){
   
         
 function makebird(){
-    var one=[0,230,40,30,"right"];
+    var y=Math.floor(Math.random() *50 )+180;	
+    var one=[0,y,40,30,"right"];
     birds.push(one);
 }
 function bird_print(){
@@ -173,9 +174,10 @@ function bird_print(){
         }
     }
 }
-bird_index=0;        
+bird_index=0;  
+g=0.3;
 function bird_check(){
-    var g=0.3;
+
     for(i in birds){
         bird_index=i;
         if(birds[i][4]=="right"){
@@ -236,6 +238,8 @@ function restart(){
 	player_to=player_to_no;
 	make_bird_time=0;
     loop=true;
+    player_step=1;
+    g=0.3;
     player_go_can_change=true;
     //隐藏正在载入的div
     document.getElementById("loading").style.display="none";
@@ -401,6 +405,8 @@ function checking(){
                         
                         player_to=player_to_down;
                         loop=true;
+                        player_step+=0.1;
+                        g+=0.1;
                         //makebird();
                     }
                     //遇到蓝色  回家 闯关成功 下一个关卡
