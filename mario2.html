@@ -196,6 +196,11 @@ function bird_check(){
                 gameover();
             }
             birds.splice(i,i+1);
+            //
+            player_y=canvas_height-player_h;
+            player_to=player_to_no;
+            player_go_can_change=true;
+            //
             makebird();
         }
     }
