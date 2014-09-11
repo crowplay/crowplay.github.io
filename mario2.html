@@ -2,7 +2,7 @@
 <html>
 <head lang="zh">
     <meta charset="UTF-8">
-    <title>mario2</title>
+    <title>请挡住那只鸟！</title>
     <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
     <meta content="yes" name="apple-mobile-web-app-capable">
     <meta content="black" name="apple-mobile-web-app-status-bar-style">
@@ -26,14 +26,10 @@
             height: 228px;
         }
         #myCanvas{
-      	    position: fixed;
+      	    margin:0 auto;
             width: 320px;
             height: 480px;
             background: #00a8ff;
-            top: 0px;
-            
-            left: 0px;
-            
             z-index: 50;
         }
         #loading{
@@ -238,6 +234,7 @@ function restart(){
     player_x=140;
     player_y=420;
 	player_to=player_to_no;
+	make_bird_time=0;
     loop=true;
     player_go_can_change=true;
     //隐藏正在载入的div
@@ -462,7 +459,7 @@ setInterval(looping,fps);
         <p id="msg_success"></p>
         <button onclick="restart()">再完一次</button>
     </div>
-    <div style="display:none;"></div>
+    <div style="display:none;"><img alt="&#x6211;&#x8981;&#x5566;&#x514D;&#x8D39;&#x7EDF;&#x8BA1;" src="http://img.users.51.la/17304694.asp" style="border:none" /></div>
     <canvas id="myCanvas"></canvas>
 </body>
 </html>
